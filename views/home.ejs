@@ -15,8 +15,11 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body>
-    <h1 class="text-2xl">Code Gladiators</h1>
-    <i class="fa-solid fa-house"></i>
+  <body class="flex items-center justify-center h-[100vh]">
+    <div class="flex items-center justify-center flex-wrap w-[80vw] gap-5">
+    <% for (let glacier of allGlacierData) {%>
+      <a class="glacier-name px-6 py-3 font-bold rounded-full bg-black text-white inline-block" href="/glacier/<%= glacier._id %>"><%= glacier.glacialName %></a>
+    <%}%>
+    </div>
   </body>
 </html>

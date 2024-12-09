@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodeGladitors</title>
-    <link rel="stylesheet" href="css/stylesBootstrap.css" />
-    <link rel="stylesheet" href="css/tailwindOutput.css" />
-    <link rel="stylesheet" href="css/fontawesome.css" />
+    <link rel="stylesheet" href="/css/stylesBootstrap.css" />
+    <link rel="stylesheet" href="/css/fontawesome.css" />
+    <link rel="stylesheet" href="/css/tailwindOutput.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -14,9 +14,795 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet"> -->
   </head>
-  <body>
-    <h1 class="text-2xl">About</h1>
-    <i class="fa-solid fa-car"></i>
+
+  <body class="">
+    <div class="flex items-center justify-center relative">
+      <h1
+        class="text-2xl text-white font-black text-center bg-black inline-block px-8 py-8 pt-10 absolute -top-5 rounded-3xl"
+      >
+        <%= glacierData.glacialName %>
+      </h1>
+    </div>
+    <div class="w-full mt-24 flex items-start justify-between px-4">
+      <div class="flex flex-col gap-4">
+        <a
+          href="/"
+          class="text-center ml-10 bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full"
+          >All Glaciers</a
+        >
+        <form
+          action="/glacier/<%= id %>"
+          method="post"
+          class="ml-10 bg-black px-4 py-2 text-lg text-center inline-block text-white font-bold rounded-full"
+        >
+          <button type="submit">Generate</button>
+        </form>
+        <a
+          href="/glacier/<%= id %>"
+          class="text-center ml-10 bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full"
+          >allData</a
+        >
+      </div>
+      <form
+        id="findForm"
+        action="/glacier/<%= id %>/date"
+        method="post"
+        class="flex items-center justify-center flex-col gap-4"
+      >
+        <div class="flex items-center justify-center gap-4 mr-10">
+          <div class="flex items-center justify-center gap-2 flex-col">
+            <div class="text-xl text-black font-bold">Start Date</div>
+            <input
+              type="date"
+              name="date[startDate]"
+              required
+              id="startDate"
+              class="bg-white text-black rounded-full outline-none border-2 border-black"
+            />
+          </div>
+          <div class="flex items-center justify-center gap-2 flex-col">
+            <div class="text-xl text-black font-bold">End Date</div>
+            <input
+              type="date"
+              name="date[endDate]"
+              required
+              id="endDate"
+              class="bg-white text-black rounded-full outline-none border-2 border-black"
+            />
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-center mr-10 bg-black text-white w-[90%] py-2 rounded-full"
+        >
+          <!-- <div></div> -->
+          <button
+            type="submit"
+            class="text-center font-bold cursor-pointer w-full"
+            id="dateFindButton"
+          >
+            Find
+          </button>
+        </div>
+      </form>
+    </div>
+    <div
+      class="mx-auto mt-10 w-full flex flex-col gap-5 items-center justify-center"
+    >
+      <% if (glacierSensorData.length !== 0) {%> <% for (let data of
+      glacierSensorData) {%>
+      <div class="w-[80vw] bg-black text-white px-4 py-2 rounded-lg">
+        <span class="flex items-center justify-center gap-4">
+          <p class="text-lg">
+            <%= data.recordedAt.toString().split(" ")[4].slice(0,5) %>
+          </p>
+          <p class="text-lg">
+            <%= data.recordedAt.toString().split(" ").slice(1,4).join("/") %>
+          </p>
+        </span>
+        <span class="flex items-center gap-5 flex-wrap">
+          <p class="text-base"><%= data.articTern.lakeSize %></p>
+          <p class="text-base"><%= data.articTern.temperature %></p>
+          <p class="text-base"><%= data.articTern.windSpeed %></p>
+          <p class="text-base"><%= data.articTern.windDirection %></p>
+          <p class="text-base"><%= data.eel.damPressure %></p>
+          <p class="text-base"><%= data.penguin.waterLevel %></p>
+          <p class="text-base"><%= data.penguin.waterTemperature %></p>
+          <p class="text-base"><%= data.penguin.waterFlowRate %></p>
+          <p class="text-base"><%= data.eel.groundPressure %></p>
+          <p class="text-base"><%= data.eel.phValue %></p>
+          <p class="text-base"><%= data.eel.iceThickness %></p>
+          <p class="text-base"><%= data.otherFactor.rainfallIntensity %></p>
+          <p class="text-base"><%= data.articTern.altitude %></p>
+          <p class="text-base"><%= data.articTern.humidity %></p>
+          <p class="text-base"><%= data.articTern.co2Level %></p>
+          <p class="text-base"><%= data.penguin.groundTemperature %></p>
+          <p class="text-base"><%= data.penguin.groundComposition %></p>
+          <p class="text-base"><%= data.eel.soilTemperature %></p>
+          <p class="text-base"><%= data.eel.soilMoisture %></p>
+          <p class="text-base"><%= data.alertLevel %></p>
+          <p class="text-base"><%= data.alertType %></p>
+          <p class="text-base"><%= data.observationNotes %></p>
+          <p class="text-base"><%= data.otherFactor.snowfall %></p>
+          <p class="text-base"><%= data.otherFactor.precipitation %></p>
+          <p class="text-base"><%= data.otherFactor.iceMeltRate %></p>
+          <p class="text-base"><%= data.otherFactor.landslideRisk %></p>
+          <p class="text-base"><%= data.otherFactor.avalancheRisk %></p>
+          <p class="text-base"><%= data.otherFactor.landslideRisk %></p>
+        </span>
+      </div>
+      <%}%> <% } %> <% if (glacierSensorData.length === 0) { %>
+      <!-- <div class="bg-black text-white font-bold text-xl w-[80vw] px-4 py-10 rounded-lg text-center">No Record Found</div> -->
+      <div
+        class="text-black font-bold text-5xl w-[80vw] px-4 py-20 rounded-lg text-center"
+      >
+        No Record Found
+      </div>
+      <% } %>
+    </div>
+
+    <div class="w-full flex items-center justify-center py-10 flex-col gap-8">
+      <div
+        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+      >
+        <canvas id="combinedChart1"></canvas>
+      </div>
+      <div
+        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+      >
+        <canvas id="combinedChart2"></canvas>
+      </div>
+      <div
+        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+      >
+        <canvas id="combinedChart3"></canvas>
+      </div>
+      <div
+        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+      >
+        <canvas id="combinedChart4"></canvas>
+      </div>
+    </div>
+    , , , ,
+    <div class="hidden" id="temperatureDataId"><%= temperatureData %></div>
+    <div class="hidden" id="lakeSizeDataId"><%= lakeSizeData %></div>
+    <div class="hidden" id="windSpeedDataId"><%= windSpeedData %></div>
+    <div class="hidden" id="altitudeDataId"><%= altitudeData %></div>
+    <div class="hidden" id="humidityDataId"><%= humidityData %></div>
+    <div class="hidden" id="co2LevelDataId"><%= co2LevelData %></div>
+    <div class="hidden" id="waterLevelDataId"><%= waterLevelData %></div>
+    <div class="hidden" id="waterTemperatureDataId">
+      <%= waterTemperatureData %>
+    </div>
+    <div class="hidden" id="waterFlowRateDataId"><%= waterFlowRateData %></div>
+    <div class="hidden" id="groundTemperatureDataId">
+      <%= groundTemperatureData %>
+    </div>
+    <div class="hidden" id="groundCompositionDataId">
+      <%= groundCompositionData %>
+    </div>
+
+    <div class="hidden" id="damPressureDataId"><%= damPressureData %></div>
+    <div class="hidden" id="groundPressureDataId">
+      <%= groundPressureData %>
+    </div>
+    <div class="hidden" id="phValueDataId"><%= phValueData %></div>
+    <div class="hidden" id="iceThicknessDataId"><%= iceThicknessData %></div>
+    <div class="hidden" id="soilTemperatureDataId">
+      <%= soilTemperatureData %>
+    </div>
+    <div class="hidden" id="soilMoistureDataId"><%= soilMoistureData %></div>
+
+    <div class="hidden" id="rainfallIntensityDataId"><%= rainfallIntensityData %></div>
+    <div class="hidden" id="snowfallDataId"><%= snowfallData %></div>
+    <div class="hidden" id="precipitationDataId"><%= precipitationData %></div>
+    <div class="hidden" id="iceMeltRateDataId"><%= iceMeltRateData %></div>
+    <div class="hidden" id="alertLevelId"><%= alertLevelData %></div>
+
+    <div class="hidden" id="totalEntriesId"><%= totalEntriesLength %></div>
+    <div class="hidden" id="totalDatesId"><%= recordedAtData %></div>
+    <script src="/js/date.js"></script>
+    <script>
+      const temperatureDataEl = document.querySelector("#temperatureDataId");
+      let temperatureDataArray = temperatureDataEl.innerHTML.split(",");
+
+      const lakeSizeDataEl = document.querySelector("#lakeSizeDataId");
+      let lakeSizeDataArray = lakeSizeDataEl.innerHTML.split(",");
+
+      const windSpeedDataEl = document.querySelector("#windSpeedDataId");
+      let windSpeedDataArray = windSpeedDataEl.innerHTML.split(",");
+
+      const altitudeDataEl = document.querySelector("#altitudeDataId");
+      let altitudeDataArray = altitudeDataEl.innerHTML.split(",");
+
+      const humidityDataEl = document.querySelector("#humidityDataId");
+      let humidityDataArray = humidityDataEl.innerHTML.split(",");
+
+      const co2LevelDataEl = document.querySelector("#co2LevelDataId");
+      let co2LevelDataArray = co2LevelDataEl.innerHTML.split(",");
+
+      const waterLevelDataEl = document.querySelector("#waterLevelDataId");
+      let waterLevelDataArray = waterLevelDataEl.innerHTML.split(",");
+
+      const waterTemperatureDataEl = document.querySelector(
+        "#waterTemperatureDataId"
+      );
+      let waterTemperatureDataArray =
+        waterTemperatureDataEl.innerHTML.split(",");
+
+      const waterFlowRateDataEl = document.querySelector(
+        "#waterFlowRateDataId"
+      );
+      let waterFlowRateDataArray = waterFlowRateDataEl.innerHTML.split(",");
+
+      const groundTemperatureDataEl = document.querySelector(
+        "#groundTemperatureDataId"
+      );
+      let groundTemperatureDataArray =
+        groundTemperatureDataEl.innerHTML.split(",");
+
+      const groundCompositionDataEl = document.querySelector(
+        "#groundCompositionDataId"
+      );
+      let groundCompositionDataArray =
+        groundCompositionDataEl.innerHTML.split(",");
+
+      const damPressureDataEl = document.querySelector("#damPressureDataId");
+      let damPressureDataArray = damPressureDataEl.innerHTML.split(",")
+      const groundPressureDataEl = document.querySelector(
+        "#groundPressureDataId"
+      );
+      let groundPressureDataArray = groundPressureDataEl.innerHTML.split(",");
+
+      const phValueDataEl = document.querySelector("#phValueDataId");
+      let phValueDataArray = phValueDataEl.innerHTML.split(",");
+
+      const iceThicknessDataEl = document.querySelector("#iceThicknessDataId");
+      let iceThicknessDataArray = iceThicknessDataEl.innerHTML.split(",")
+
+      const soilTemperatureDataEl = document.querySelector(
+        "#soilTemperatureDataId"
+      );
+      let soilTemperatureDataArray = soilTemperatureDataEl.innerHTML.split(",");
+
+      const soilMoistureDataEl = document.querySelector("#soilMoistureDataId");
+      let soilMoistureDataArray = soilMoistureDataEl.innerHTML.split(",")
+
+      const rainfallIntensityDataEl = document.querySelector("#rainfallIntensityDataId");
+      let rainfallIntensityDataArray = rainfallIntensityDataEl.innerHTML.split(",");
+
+      const snowfallDataEl = document.querySelector("#snowfallDataId");
+      let snowfallDataArray = snowfallDataEl.innerHTML.split(",")
+
+      const precipitationDataEl = document.querySelector("#precipitationDataId");
+      let precipitationDataArray = precipitationDataEl.innerHTML.split(",")
+
+      const iceMeltRateDataEl = document.querySelector("#iceMeltRateDataId");
+      let iceMeltRateDataArray = iceMeltRateDataEl.innerHTML.split(",");
+
+      const alertLevelEl = document.querySelector("#alertLevelId");
+      let alertLevelDataArray = alertLevelEl.innerHTML.split(",")
+
+
+      const totalEntriesEl = document.querySelector("#totalEntries");
+      // let totalEntriesElArray = temperatureDataEl.innerHTML.split(",");
+
+      // let count = 1;
+      // let totalEntriesArray = [];
+      // while (count !== Number(totalEntriesEl.innerHTML) + 1) {
+      //   totalEntriesArray.push(count);
+      //   count++;
+      // }
+      // console.log(totalEntriesArray)
+
+      const totalDatesEl = document.querySelector("#totalDatesId");
+      console.log(totalDatesEl);
+      let totalDateArray = totalDatesEl.innerHTML.split(",");
+
+      console.log(totalDateArray);
+      // Function to collect data
+      function collectData() {
+        const timestamps = totalDateArray.splice(0, 20).reverse();
+        const temperatures = temperatureDataArray.splice(0, 20).reverse();
+        const lakeSize = lakeSizeDataArray.splice(0, 20).reverse();
+        const windSpeed = windSpeedDataArray.splice(0, 20).reverse();
+        const altitude = altitudeDataArray.splice(0, 20).reverse();
+        const humidity = humidityDataArray.splice(0, 20).reverse();
+        const co2Level = co2LevelDataArray.splice(0, 20).reverse();
+
+        const waterLevel = waterLevelDataArray.splice(0, 20).reverse();
+        const waterTemperature = waterTemperatureDataArray
+          .splice(0, 20)
+          .reverse();
+        const waterFlowRate = waterFlowRateDataArray.splice(0, 20).reverse();
+        const groundTemperature = groundTemperatureDataArray
+          .splice(0, 20)
+          .reverse();
+        const groundComposition = groundCompositionDataArray
+          .splice(0, 20)
+          .reverse();
+
+        const damPressure = damPressureDataArray.splice(0, 20).reverse();
+const groundPressure = groundPressureDataArray.splice(0, 20).reverse();
+const phValue = phValueDataArray.splice(0, 20).reverse();
+const iceThickness = iceThicknessDataArray.splice(0, 20).reverse();
+const soilTemperature = soilTemperatureDataArray.splice(0, 20).reverse();
+const soilMoisture = soilMoistureDataArray.splice(0, 20).reverse();
+
+        const rainfallIntensity = rainfallIntensityDataArray.splice(0, 20).reverse();
+        const snowfall = snowfallDataArray.splice(0, 20).reverse();
+        const precipitation = precipitationDataArray.splice(0, 20).reverse();
+        const iceMeltRate = iceMeltRateDataArray.splice(0, 20).reverse();
+        const alertLevel = alertLevelDataArray.splice(0, 20).reverse();
+
+
+        // const temperatures = [
+        //   12, 14, 20, 15, 40, 60, 70, 80, 90, 100, 23, 25, 26, 27, 28, 29, 30,
+        //   40, 60, 70, 10, 20, 30, 30, 30, 30, 30, 30, 30, 40,
+        // ];
+        // const speeds = [
+        //   40, 60, 20, 30, 70, 90, 10, 100, 30, 50, 85, 100, 40, 50, 85, 100, 40,
+        //   50, 85, 100, 30, 40, 60, 10, 30, 50, 60, 10, 30, 30,
+        // ];
+        // const heights = [
+        //   10, 50, 30, 70, 10, 50, 30, 50, 20, 10, 50, 30, 30, 30, 30, 60, 10,
+        //   30, 30, 30, 70, 10, 50, 30, 40, 90, 10, 50, 30, 100,
+        // ];
+        // return { timestamps, temperatures, speeds, heights };
+
+        return {
+          timestamps,
+          temperatures,
+          lakeSize,
+          windSpeed,
+          altitude,
+          humidity,
+          co2Level,
+          waterLevel,
+          waterTemperature,
+          waterFlowRate,
+          groundTemperature,
+          groundComposition,
+          damPressure,
+groundPressure,
+phValue,
+iceThickness,
+soilTemperature,
+soilMoisture,
+
+rainfallIntensity,
+snowfall,
+precipitation,
+iceMeltRate,
+alertLevel,
+
+        };
+      }
+
+      // Function to plot combined data
+      // function plotCombinedData(timestamps, temperatures, speeds, heights) {
+      function plotCombinedData(
+        timestamps,
+        temperatures,
+        lakeSize,
+        windSpeed,
+        altitude,
+        humidity,
+        co2Level,
+
+        waterLevel,
+        waterTemperature,
+        waterFlowRate,
+        groundTemperature,
+        groundComposition,
+
+        damPressure,
+groundPressure,
+phValue,
+iceThickness,
+soilTemperature,
+soilMoisture,
+
+
+rainfallIntensity,
+snowfall,
+precipitation,
+iceMeltRate,
+alertLevel,
+
+      ) {
+        const ctx1 = document.getElementById("combinedChart1").getContext("2d");
+        const ctx2 = document.getElementById("combinedChart2").getContext("2d");
+        const ctx3 = document.getElementById("combinedChart3").getContext("2d");
+        const ctx4 = document.getElementById("combinedChart4").getContext("2d");
+
+        new Chart(ctx1, {
+          type: "line",
+          data: {
+            labels: timestamps,
+            datasets: [
+              {
+                label: "Temperature (°C)",
+                data: temperatures,
+                borderColor: "red",
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Lake Size (sq km)",
+                data: lakeSize, // Replace with actual data for lakeSize
+                borderColor: "blue", // Blue for lake size
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Wind Speed (m/s)",
+                data: windSpeed, // Replace with actual data for windSpeed
+                borderColor: "green", // Green for wind speed
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Altitude (m)",
+                data: altitude, // Replace with actual data for altitude
+                borderColor: "orange", // Orange for altitude
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Humidity (%)",
+                data: humidity, // Replace with actual data for humidity
+                borderColor: "purple", // Purple for humidity
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "CO2 Level (ppm)",
+                data: co2Level, // Replace with actual data for co2Level
+                borderColor: "black", // Black for CO2 level
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              // {
+              //   label: "Speed (km/h)",
+              //   data: speeds,
+              //   borderColor: "green",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+              // {
+              //   label: "Height (m)",
+              //   data: heights,
+              //   borderColor: "blue",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: true },
+            },
+            scales: {
+              x: { title: { display: true, text: "Timestamps" } },
+              y: { title: { display: true, text: "Values" } },
+            },
+          },
+        });
+
+        new Chart(ctx2, {
+          type: "line",
+          data: {
+            labels: timestamps,
+            datasets: [
+              {
+                label: "Water Level (m)",
+                data: waterLevel, // Replace with actual data for waterLevel
+                borderColor: "red",
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Water Temperature (°C)",
+                data: waterTemperature, // Replace with actual data for waterTemperature
+                borderColor: "blue", // Blue for water temperature
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Water Flow Rate (m³/s)",
+                data: waterFlowRate, // Replace with actual data for waterFlowRate
+                borderColor: "green", // Green for water flow rate
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Ground Temperature (°C)",
+                data: groundTemperature, // Replace with actual data for groundTemperature
+                borderColor: "orange", // Orange for ground temperature
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+              {
+                label: "Ground Composition (%)",
+                data: groundComposition, // Replace with actual data for groundComposition
+                borderColor: "purple", // Purple for ground composition
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1,
+              },
+
+              // {
+              //   label: "Speed (km/h)",
+              //   data: speeds,
+              //   borderColor: "green",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+              // {
+              //   label: "Height (m)",
+              //   data: heights,
+              //   borderColor: "blue",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: true },
+            },
+            scales: {
+              x: { title: { display: true, text: "Timestamps" } },
+              y: { title: { display: true, text: "Values" } },
+            },
+          },
+        });
+
+        new Chart(ctx3, {
+          type: "line",
+          data: {
+            labels: timestamps,
+            datasets: [
+            {
+  label: "Dam Pressure (Pa)",
+  data: damPressure, // Replace with actual data for damPressure
+  borderColor: "red",
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Ground Pressure (Pa)",
+  data: groundPressure, // Replace with actual data for groundPressure
+  borderColor: "blue", // Blue for ground pressure
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "pH Value",
+  data: phValue, // Replace with actual data for phValue
+  borderColor: "green", // Green for pH value
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Ice Thickness (m)",
+  data: iceThickness, // Replace with actual data for iceThickness
+  borderColor: "orange", // Orange for ice thickness
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Soil Temperature (°C)",
+  data: soilTemperature, // Replace with actual data for soilTemperature
+  borderColor: "purple", // Purple for soil temperature
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Soil Moisture (%)",
+  data: soilMoisture, // Replace with actual data for soilMoisture
+  borderColor: "black", // Black for soil moisture
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+
+              // {
+              //   label: "Speed (km/h)",
+              //   data: speeds,
+              //   borderColor: "green",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+              // {
+              //   label: "Height (m)",
+              //   data: heights,
+              //   borderColor: "blue",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: true },
+            },
+            scales: {
+              x: { title: { display: true, text: "Timestamps" } },
+              y: { title: { display: true, text: "Values" } },
+            },
+          },
+        });
+
+        new Chart(ctx4, {
+          type: "line",
+          data: {
+            labels: timestamps,
+            datasets: [
+            {
+  label: "Rainfall Intensity (mm/h)",
+  data: rainfallIntensity, // Replace with actual data for rainfallIntensity
+  borderColor: "red",
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Snowfall (cm)",
+  data: snowfall, // Replace with actual data for snowfall
+  borderColor: "blue", // Blue for snowfall
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Precipitation (mm)",
+  data: precipitation, // Replace with actual data for precipitation
+  borderColor: "green", // Green for precipitation
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Ice Melt Rate (cm/day)",
+  data: iceMeltRate, // Replace with actual data for iceMeltRate
+  borderColor: "orange", // Orange for ice melt rate
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Alert Level",
+  data: alertLevel, // Replace with actual data for alertLevel
+  borderColor: "purple", // Purple for alert level
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+
+              // {
+              //   label: "Speed (km/h)",
+              //   data: speeds,
+              //   borderColor: "green",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+              // {
+              //   label: "Height (m)",
+              //   data: heights,
+              //   borderColor: "blue",
+              //   borderWidth: 2,
+              //   fill: false,
+              //   tension: 0.1,
+              // },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: true },
+            },
+            scales: {
+              x: { title: { display: true, text: "Timestamps" } },
+              y: { title: { display: true, text: "Values" } },
+            },
+          },
+        });
+      }
+
+      // Main program
+      // const { timestamps, temperatures, speeds, heights } = collectData();
+      // plotCombinedData(timestamps, temperatures, speeds, heights);
+
+      const {
+        timestamps,
+        temperatures,
+        lakeSize,
+        windSpeed,
+        altitude,
+        humidity,
+        co2Level,
+
+        waterLevel,
+        waterTemperature,
+        waterFlowRate,
+        groundTemperature,
+        groundComposition,
+
+        
+        damPressure,
+groundPressure,
+phValue,
+iceThickness,
+soilTemperature,
+soilMoisture,
+
+
+rainfallIntensity,
+snowfall,
+precipitation,
+iceMeltRate,
+alertLevel,
+
+      } = collectData();
+      plotCombinedData(
+        timestamps,
+        temperatures,
+        lakeSize,
+        windSpeed,
+        altitude,
+        humidity,
+        co2Level,
+
+        waterLevel,
+        waterTemperature,
+        waterFlowRate,
+        groundTemperature,
+        groundComposition,
+
+        
+        damPressure,
+groundPressure,
+phValue,
+iceThickness,
+soilTemperature,
+soilMoisture,
+
+
+rainfallIntensity,
+snowfall,
+precipitation,
+iceMeltRate,
+alertLevel,
+      );
+    </script>
   </body>
 </html>
