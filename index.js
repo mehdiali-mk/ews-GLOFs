@@ -36,9 +36,31 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname + "/public")));
 
 app.get("/", async (request, response) => {
-  allGlacierData = await Glacial.find({});
-  console.log(allGlacierData);
-  response.render("home.ejs", allGlacierData);
+  const allGlacierData = await Glacial.find({});
+  let allGlacierId = [];
+
+  for (glacierIndex in allGlacierData) {
+    allGlacierId.push(allGlacierData[glacierIndex]._id.toHexString());
+  }
+
+  let allSenorData = [];
+
+  for (id in allGlacierId) {
+    console.log(allGlacierId[id])
+    let glacierSensorData = await SensorData.find({ glacialId: allGlacierId[id] }).sort({
+      recordedAt: -1,
+    });
+    // console.log(glacierSensorData)
+    glacierSensorData = glacierSensorData.splice(0, 1);
+    // console.log(glacierSensorData)
+    allSenorData.push(glacierSensorData[0])
+    // console.log(newSensorData)
+  }
+
+  console.log(allSenorData)
+
+  // console.log(allGlacierData);
+  response.render("home.ejs", {allGlacierData, allSenorData });
 });
 
 app.get("/glacier/:id", async (request, response) => {
