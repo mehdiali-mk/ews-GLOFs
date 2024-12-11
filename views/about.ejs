@@ -30,23 +30,23 @@
       <div class="flex gap-3">
         <a
           href="/"
-          class="text-center ml-10 bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full"
+          class="text-center ml-10 bg-secondary px-4 py-2 text-lg inline-block text-primary font-bold rounded-full"
           >All Glaciers</a
         >
         <form
           action="/glacier/<%= id %>"
           method="post"
-          class="bg-black px-4 py-2 text-lg text-center inline-block text-white font-bold rounded-full"
+          class="bg-secondary px-4 py-2 text-lg text-center inline-block text-primary font-bold rounded-full"
         >
           <button type="submit">Generate</button>
         </form>
-        <a
+        <!-- <a
           href="/glacier/<%= id %>"
           class="text-center bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full"
           >allData</a
-        >
+        > -->
       </div>
-      <form
+      <!-- <form
         id="findForm"
         action="/glacier/<%= id %>/date"
         method="post"
@@ -77,7 +77,6 @@
         <div
         class="text-center bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full mr-10"
         >
-          <!-- <div></div> -->
           <button
             type="submit"
             class="text-center font-bold cursor-pointer w-full"
@@ -86,15 +85,15 @@
             Find
           </button>
         </div>
-      </form>
+      </form> -->
     </div>
 
     <div class="mx-auto mt-10 w-full flex flex-col gap-5 items-center justify-center">
-      <div class="w-[80vw] bg-indigo-600 text-white px-4 py-2 rounded-lg">
+      <div class="w-[80vw] bg-secondary text-primary px-4 py-2 rounded-lg">
         <div class="flex items-center justify-end gap-2">
-          <div class="font-bold text-lg text-white">Last Updated:</div>
-          <div class="font-semibold text-xl text-white"><%= glacierSensorData[0].recordedAt.toString().split(" ").slice(1,4).join("-") %> / </div>
-          <div class="font-semibold text-xl text-white"><%= glacierSensorData[0].recordedAt.toString().split(" ")[4].slice(0,5) %></div>
+          <div class="font-bold text-lg text-primary">Last Updated:</div>
+          <div class="font-semibold text-xl text-primary"><%= glacierSensorData[0].recordedAt.toString().split(" ").slice(1,4).join("-") %> / </div>
+          <div class="font-semibold text-xl text-primary"><%= glacierSensorData[0].recordedAt.toString().split(" ")[4].slice(0,5) %></div>
         </div>
         <div class="w-full flex items-center justify-center mt-8">
         <div class="flex items-center justify-start gap-7">
@@ -145,14 +144,14 @@
             <div class="text-6xl font-black"><%= glacierData.glacialName %></div>
             <div class="flex items-center justify-center gap-4">
               <div class="flex items-center justify-center gap-2">
-                <div class="text-lg font-bold text-white">Region:</div>
-              <div class="text-lg font-bold text-white"><%= glacierData.glacialRegion %></div>
+                <div class="text-lg font-bold text-primary">Region:</div>
+              <div class="text-lg font-bold text-primary"><%= glacierData.glacialRegion %></div>
             </div>
               <div class="flex items-center justify-center gap-2">
-                <div class="text-lg font-bold text-white">Location:</div>
+                <div class="text-lg font-bold text-primary">Location:</div>
               <div class="flex items-center justify-center gap-1">
-                <div class="text-lg font-bold text-white"><%= glacierData.glacialLongitude %></div>
-              <div class="text-lg font-bold text-white"><%= glacierData.glacialLatitude %></div>
+                <div class="text-lg font-bold text-primary"><%= glacierData.glacialLongitude %></div>
+              <div class="text-lg font-bold text-primary"><%= glacierData.glacialLatitude %></div>
               </div>
             </div>
             </div>
@@ -175,7 +174,7 @@
         </div> -->
         <div class="mt-6 w-full flex flex-col items-center justify-center gap-2">
           <div class="w-full flex items-center justify-start gap-2">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
@@ -192,7 +191,7 @@
 
           <!-- Column 0 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-ruler"></i>
             </div>
@@ -205,7 +204,7 @@
         
           <!-- Column 1 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-temperature-three-quarters"></i>
             </div>
@@ -218,7 +217,7 @@
         
           <!-- Column 2 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-wind"></i>
             </div>
@@ -231,7 +230,7 @@
         
           <!-- Column 3 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-regular fa-compass"></i>
             </div>
@@ -244,7 +243,7 @@
 
           <!-- Column 6 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-ruler"></i>
             </div>
@@ -258,7 +257,7 @@
 
           <!-- Column 7 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-droplet"></i>
             </div>
@@ -271,7 +270,7 @@
 
           <!-- Column 8 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-smog"></i>
             </div>
@@ -285,7 +284,7 @@
 
           <!-- Column 9 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-water"></i>
             </div>
@@ -298,7 +297,7 @@
 
           <!-- Column 10 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-temperature-low"></i>
             </div>
@@ -311,7 +310,7 @@
 
           <!-- Column 11 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-percent"></i>
             </div>
@@ -324,7 +323,7 @@
 
           <!-- Column 12 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-temperature-low"></i>
             </div>
@@ -337,7 +336,7 @@
 
           <!-- Column 13 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-arrow-up-from-ground-water"></i>
             </div>
@@ -350,7 +349,7 @@
 
           <!-- Column 14 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-road-spikes"></i>
             </div>
@@ -363,7 +362,7 @@
           
           <!-- Column 14 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-road-spikes"></i>
             </div>
@@ -377,7 +376,7 @@
 
           <!-- Column 15 -->
           <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-white">
+            <div class="text-2xl text-primary">
               <!-- Icon (example: sun) -->
               <i class="fa-solid fa-glass-water-droplet"></i>
             </div>
@@ -391,7 +390,7 @@
         
         <!-- Column 16 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-snowflake"></i>
           </div>
@@ -406,7 +405,7 @@
         
         <!-- Column 16 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-temperature-three-quarters"></i>
           </div>
@@ -419,7 +418,7 @@
 
         <!-- Column 16 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-droplet"></i>
           </div>
@@ -432,7 +431,7 @@
 
         <!-- Column 17 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-cloud-showers-water"></i>
           </div>
@@ -446,7 +445,7 @@
 
         <!-- Column 18 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-regular fa-snowflake"></i>
           </div>
@@ -459,7 +458,7 @@
 
                 <!-- Column 19 -->
                 <div class="flex items-center justify-start p-2 rounded-lg">
-                  <div class="text-2xl text-white">
+                  <div class="text-2xl text-primary">
                     <!-- Icon (example: sun) -->
                     <i class="fa-solid fa-cloud-meatball"></i>
                   </div>
@@ -473,7 +472,7 @@
                 
         <!-- Column 19 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-cube"></i>
           </div>
@@ -486,7 +485,7 @@
 
         <!-- Column 20 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-hill-rockslide"></i>
           </div>
@@ -499,7 +498,7 @@
 
         <!-- Column 21 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-hill-avalanche"></i>
           </div>
@@ -512,7 +511,7 @@
 
         <!-- Column 22 -->
         <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
+          <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-house-crack"></i>
           </div>
@@ -532,19 +531,23 @@
       </div>
     </div>
 
+    <div class="w-full my-8 flex items-center justify-center">
+      <a href="/glacier/<% glacierData._id %>/historical" class="bg-secondary text-primary font-bold text-2xl px-4 py-2 rounded-full">Historical Data</a>
+    </div>
+
     <div class="w-full mx-auto mt-10 flex flex-col gap-3 items-center justify-center">
-      <div class="w-[80vw] text-white">
-        <div class="text-3xl text-black font-bold">Historical Data</div>
+      <div class="w-[80vw] text-primary">
+        <div class="text-3xl text-secondary font-bold">Historical Data</div>
       </div>
     </div>
 
     <div class="w-full mx-auto mt-10 flex flex-col gap-3 items-center justify-center">
         <% for (let data of glacierSensorData) { %>
-          <div class="w-[80vw] bg-indigo-600 text-white px-4 py-2 rounded-lg">
+          <div class="w-[80vw] bg-secondary text-primary px-4 py-2 rounded-lg">
             <div class="flex items-center justify-end gap-2">
-              <div class="font-bold text-lg text-white">Data Updated:</div>
-              <div class="font-semibold text-xl text-white"><%= data.recordedAt.toString().split(" ").slice(1,4).join("-") %> / </div>
-              <div class="font-semibold text-xl text-white"><%= data.recordedAt.toString().split(" ")[4].slice(0,5) %></div>
+              <div class="font-bold text-lg text-primary">Data Updated:</div>
+              <div class="font-semibold text-xl text-primary"><%= data.recordedAt.toString().split(" ").slice(1,4).join("-") %> / </div>
+              <div class="font-semibold text-xl text-primary"><%= data.recordedAt.toString().split(" ")[4].slice(0,5) %></div>
             </div>
             <div class="w-full flex items-center justify-center mt-0 -translate-y-5">
               <div class="flex items-center justify-start gap-7">
@@ -595,7 +598,7 @@
             
             <div class=" w-full flex flex-col items-center justify-center gap-2">
               <div class="w-full flex items-center justify-start gap-2">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
@@ -608,11 +611,11 @@
               </div>
             </div>
 
-            <div class=" mt-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
+            <div class=" mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
 
               <!-- Column 0 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-ruler"></i>
                 </div>
@@ -625,7 +628,7 @@
             
               <!-- Column 1 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-temperature-three-quarters"></i>
                 </div>
@@ -638,7 +641,7 @@
             
               <!-- Column 2 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-wind"></i>
                 </div>
@@ -651,7 +654,7 @@
             
               <!-- Column 3 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-regular fa-compass"></i>
                 </div>
@@ -664,7 +667,7 @@
     
               <!-- Column 6 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-ruler"></i>
                 </div>
@@ -678,7 +681,7 @@
     
               <!-- Column 7 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-droplet"></i>
                 </div>
@@ -691,7 +694,7 @@
     
               <!-- Column 8 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-smog"></i>
                 </div>
@@ -705,7 +708,7 @@
     
               <!-- Column 9 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-water"></i>
                 </div>
@@ -718,7 +721,7 @@
     
               <!-- Column 10 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-temperature-low"></i>
                 </div>
@@ -731,7 +734,7 @@
     
               <!-- Column 11 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-percent"></i>
                 </div>
@@ -744,7 +747,7 @@
     
               <!-- Column 12 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-temperature-low"></i>
                 </div>
@@ -757,7 +760,7 @@
     
               <!-- Column 13 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-arrow-up-from-ground-water"></i>
                 </div>
@@ -770,7 +773,7 @@
     
               <!-- Column 14 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-road-spikes"></i>
                 </div>
@@ -783,7 +786,7 @@
               
               <!-- Column 14 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-road-spikes"></i>
                 </div>
@@ -797,7 +800,7 @@
     
               <!-- Column 15 -->
               <div class="flex items-center justify-start rounded-lg">
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-primary">
                   <!-- Icon (example: sun) -->
                   <i class="fa-solid fa-glass-water-droplet"></i>
                 </div>
@@ -811,7 +814,7 @@
             
             <!-- Column 16 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-snowflake"></i>
               </div>
@@ -826,7 +829,7 @@
             
             <!-- Column 16 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-temperature-three-quarters"></i>
               </div>
@@ -839,7 +842,7 @@
     
             <!-- Column 16 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-droplet"></i>
               </div>
@@ -852,7 +855,7 @@
     
             <!-- Column 17 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-cloud-showers-water"></i>
               </div>
@@ -866,7 +869,7 @@
     
             <!-- Column 18 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-regular fa-snowflake"></i>
               </div>
@@ -879,7 +882,7 @@
     
                     <!-- Column 19 -->
                     <div class="flex items-center justify-start rounded-lg">
-                      <div class="text-2xl text-white">
+                      <div class="text-2xl text-primary">
                         <!-- Icon (example: sun) -->
                         <i class="fa-solid fa-cloud-meatball"></i>
                       </div>
@@ -893,7 +896,7 @@
                     
             <!-- Column 19 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-cube"></i>
               </div>
@@ -906,7 +909,7 @@
     
             <!-- Column 20 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-hill-rockslide"></i>
               </div>
@@ -919,7 +922,7 @@
     
             <!-- Column 21 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-hill-avalanche"></i>
               </div>
@@ -932,7 +935,7 @@
     
             <!-- Column 22 -->
             <div class="flex items-center justify-start rounded-lg">
-              <div class="text-2xl text-white">
+              <div class="text-2xl text-primary">
                 <!-- Icon (example: sun) -->
                 <i class="fa-solid fa-house-crack"></i>
               </div>
@@ -991,7 +994,7 @@
               </div>
              
               <div class="flex items-center justify-end gap-2">
-                <div class="font-bold text-lg text-white">Last Updated:</div>
+                <div class="font-bold text-lg text-primary">Last Updated:</div>
                 <div class="font-semibold text-xl text-white"><%= glacierSensorData[0].recordedAt.toString().split(" ").slice(1,4).join("-") %> / </div>
               <div class="font-semibold text-xl text-white"><%= glacierSensorData[0].recordedAt.toString().split(" ")[4].slice(0,5) %></div>
               </div> -->
@@ -999,6 +1002,8 @@
           <%}%>
     </div>
 
+
+    
 
 <!--     
     <div
@@ -1057,38 +1062,38 @@
 
      -->
      <div class="w-full mx-auto mt-10 flex flex-col gap-3 items-center justify-center">
-      <div class="w-[80vw] text-white">
-        <div class="text-3xl text-black font-bold">Graphical Data</div>
+      <div class="w-[80vw] text-secondary">
+        <div class="text-3xl text-secondary font-bold">Graphical Data</div>
       </div>
     </div>
 
      <div class="w-full flex items-center justify-center py-10 flex-col gap-8">
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
+        class="bg-secondary w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
         <div class="text-center font-bold text-xl">Artic Tern</div>
         <canvas id="combinedChart1"></canvas>
       </div>
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
+        class="bg-secondary w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
       <div class="text-center font-bold text-xl">Penguin</div>
         <canvas id="combinedChart2"></canvas>
       </div>
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
+        class="bg-secondary w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
       <div class="text-center font-bold text-xl">Eel</div>
         <canvas id="combinedChart3"></canvas>
       </div>
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
+        class="bg-secondary w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
       <div class="text-center font-bold text-xl">Other Factor</div>
         <canvas id="combinedChart4"></canvas>
       </div>
     </div>
-   
+    
     <div class="hidden" id="temperatureDataId"><%= temperatureData %></div>
     <div class="hidden" id="lakeSizeDataId"><%= lakeSizeData %></div>
     <div class="hidden" id="windSpeedDataId"><%= windSpeedData %></div>

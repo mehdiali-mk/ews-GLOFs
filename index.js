@@ -63,6 +63,11 @@ app.get("/", async (request, response) => {
   response.render("home.ejs", {allGlacierData, allSenorData });
 });
 
+app.get("/glacier/:id/historical", async (request, response) => {
+  const {id} = request.params;
+
+});
+
 app.get("/glacier/:id", async (request, response) => {
   const { id } = request.params;
 
