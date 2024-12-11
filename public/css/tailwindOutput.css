@@ -967,6 +967,14 @@ input[type="range"]::-ms-fill-lower {
   margin-top: 1rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -1084,6 +1092,16 @@ input[type="range"]::-ms-fill-lower {
 
 .-translate-y-\[50\%\] {
   --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-10 {
+  --tw-translate-y: -2.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-5 {
+  --tw-translate-y: -1.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 

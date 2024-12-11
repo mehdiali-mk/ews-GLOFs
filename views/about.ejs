@@ -173,6 +173,20 @@
         <!-- <div class="w-full text-xl font-bold mt-3 flex items-start justify-start">
           Data Collected from Artic Tern:
         </div> -->
+        <div class="mt-6 w-full flex flex-col items-center justify-center gap-2">
+          <div class="w-full flex items-center justify-start gap-2">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="text-xl font-bold">Alert Type:</div>
+            <div class="text-lg font-semibold"><%= glacierSensorData[0].alertType %></div> 
+          </div>
+          <div class="w-full flex items-start justify-start gap-2">
+            <div class="w-[55%] text-xl font-bold">Observation Notes:</div>
+            <div class="text-lg font-semibold"><%= glacierSensorData[0].observationNotes %></div> 
+          </div>
+        </div>
 
         <div class=" mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
 
@@ -407,7 +421,7 @@
         <div class="flex items-center justify-start p-2 rounded-lg">
           <div class="text-2xl text-white">
             <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-temperature-three-quarters"></i>
+            <i class="fa-solid fa-droplet"></i>
           </div>
           <div class="ml-4 flex items-center justify-between w-full gap-2">
             <div class="text-sm font-semibold">Soil Moisture: </div>
@@ -447,7 +461,7 @@
                 <div class="flex items-center justify-start p-2 rounded-lg">
                   <div class="text-2xl text-white">
                     <!-- Icon (example: sun) -->
-                    <i class="fa-solid fa-cube"></i>
+                    <i class="fa-solid fa-cloud-meatball"></i>
                   </div>
                   <div class="ml-4 flex items-center justify-between w-full gap-2">
                     <div class="text-sm font-semibold">Precipitation: </div>
@@ -509,33 +523,12 @@
           </div>
         </div>
 
-        
-        <!-- Column 23 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-white">
-            <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-          <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Alert Type: </div>
-            <div class="text-lg"></div>
-            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-          </div>
-        </div>
 
         <!-- Column 24 -->
+      
       </div>
 
-      <div class="mt-6 w-full flex flex-col items-center justify-center gap-2">
-        <div class="w-full flex items-center justify-start gap-2">
-          <div class="text-xl font-bold">Alert Type:</div>
-          <div class="text-lg font-semibold"><%= glacierSensorData[0].alertType %></div> 
-        </div>
-      <div class="w-full flex items-start justify-start gap-2">
-        <div class="w-[55%] text-xl font-bold">Observation Notes:</div>
-        <div class="text-lg font-semibold"><%= glacierSensorData[0].observationNotes %></div> 
-      </div>
-    </div>
+      
       </div>
     </div>
 
@@ -545,59 +538,468 @@
       </div>
     </div>
 
-    <div class="w-full mx-auto mt-10 flex flex-col gap3 items-center justify-center">
-      <div class="w-[80vw] bg-indigo-600 text-white px-4 py-2 rounded-lg">
-        <div class="flex items-center justify-center gap-7">
-          <% if (glacierSensorData[0].alertLevel == 1) {%>
-            <div
-            class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-lime-600 h-24 w-24 relative"
-          >
-            <% } %>
-            <% if (glacierSensorData[0].alertLevel == 2) {%>
-              <div
-              class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-400 h-24 w-24 relative"
-            >
-              <% } %>
-              <% if (glacierSensorData[0].alertLevel == 3) {%>
-                <div
-                class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-600 h-24 w-24 relative"
-              >
-                <% } %>
-                <% if (glacierSensorData[0].alertLevel == 4) {%>
+    <div class="w-full mx-auto mt-10 flex flex-col gap-3 items-center justify-center">
+        <% for (let data of glacierSensorData) { %>
+          <div class="w-[80vw] bg-indigo-600 text-white px-4 py-2 rounded-lg">
+            <div class="flex items-center justify-end gap-2">
+              <div class="font-bold text-lg text-white">Data Updated:</div>
+              <div class="font-semibold text-xl text-white"><%= data.recordedAt.toString().split(" ").slice(1,4).join("-") %> / </div>
+              <div class="font-semibold text-xl text-white"><%= data.recordedAt.toString().split(" ")[4].slice(0,5) %></div>
+            </div>
+            <div class="w-full flex items-center justify-center mt-0 -translate-y-5">
+              <div class="flex items-center justify-start gap-7">
+                <% if (data.alertLevel == 1) {%>
                   <div
-                  class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-orange-500 h-24 w-24 relative"
+                  class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-lime-600 h-24 w-24 relative"
                 >
                   <% } %>
-                  <% if (glacierSensorData[0].alertLevel == 5) {%>
+                  <% if (data.alertLevel == 2) {%>
                     <div
-                    class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-red-700 h-24 w-24 relative"
+                    class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-400 h-24 w-24 relative"
                   >
                     <% } %>
-           
-            <svg
-              class="w-96 h-96"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
-              ></path>
-            </svg>
-            <div class="absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-3xl"><%= glacierSensorData[0].alertLevel %></div>
+                    <% if (data.alertLevel == 3) {%>
+                      <div
+                      class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-600 h-24 w-24 relative"
+                    >
+                      <% } %>
+                      <% if (data.alertLevel == 4) {%>
+                        <div
+                        class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-orange-500 h-24 w-24 relative"
+                      >
+                        <% } %>
+                        <% if (data.alertLevel == 5) {%>
+                          <div
+                          class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-red-700 h-24 w-24 relative"
+                        >
+                          <% } %>
+                
+                  <svg
+                    class="w-96 h-96"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                    ></path>
+                  </svg>
+                  <div class="absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-3xl"><%= data.alertLevel %></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class=" w-full flex flex-col items-center justify-center gap-2">
+              <div class="w-full flex items-center justify-start gap-2">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="text-xl font-bold">Alert Type:</div>
+                <div class="text-lg font-semibold"><%= glacierSensorData[0].alertType %></div> 
+              </div>
+              <div class="w-full flex items-start justify-start gap-2">
+                <div class="w-[55%] text-xl font-bold">Observation Notes:</div>
+                <div class="text-lg font-semibold"><%= glacierSensorData[0].observationNotes %></div> 
+              </div>
+            </div>
+
+            <div class=" mt-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
+
+              <!-- Column 0 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-ruler"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Lake Size: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].articTern.lakeSize %> km²</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+            
+              <!-- Column 1 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-temperature-three-quarters"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Temperature: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].articTern.temperature %> °C</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+            
+              <!-- Column 2 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-wind"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Wind Speed: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].articTern.windSpeed %> m/s</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+            
+              <!-- Column 3 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-regular fa-compass"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Wind Direction: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].articTern.windDirection%></div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+              <!-- Column 6 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-ruler"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Altitude: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].articTern.altitude %> m</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+    
+              <!-- Column 7 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-droplet"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Humidity: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].articTern.humidity %> %</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+              <!-- Column 8 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-smog"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">CO₂ Level: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].articTern.co2Level %> ppm</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+    
+              <!-- Column 9 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-water"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Water Level: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].penguin.waterLevel %> m</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+              <!-- Column 10 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-temperature-low"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Water Temperature: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].penguin.waterTemperature %>°C</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+              <!-- Column 11 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-percent"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Water Flow Rate: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].penguin.waterFlowRate %> m³/s</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+              <!-- Column 12 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-temperature-low"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Ground Temperature:</div>
+                  <div class="text-base"><%= glacierSensorData[0].penguin.groundTemperature %>°C</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+              <!-- Column 13 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Ground Composition: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].penguin.groundComposition %>%</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+    
+              <!-- Column 14 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-road-spikes"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Dam Pressure: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].eel.damPressure %> kPa</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+              
+              <!-- Column 14 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-road-spikes"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">GroundPressure:</div>
+                  <div class="text-lg"><%= glacierSensorData[0].eel.groundPressure %>kPa</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+              
+    
+              <!-- Column 15 -->
+              <div class="flex items-center justify-start rounded-lg">
+                <div class="text-2xl text-white">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-glass-water-droplet"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Ph Value: </div>
+                  <div class="text-lg"><%= glacierSensorData[0].eel.phValue %></div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+            
+            
+            <!-- Column 16 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-snowflake"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Ice Thickness: </div>
+                <div class="text-lg"><%= glacierSensorData[0].eel.iceThickness %> cm</div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+                    
+            
+            <!-- Column 16 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-temperature-three-quarters"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Soil Temperature: </div>
+                <div class="text-lg"><%= glacierSensorData[0].eel.soilTemperature %>°C</div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+            <!-- Column 16 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-droplet"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Soil Moisture: </div>
+                <div class="text-lg"><%= glacierSensorData[0].eel.soilMoisture %> %</div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+            <!-- Column 17 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-cloud-showers-water"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">RainFallIntensity: </div>
+                <div class="text-lg"><%= glacierSensorData[0].otherFactor.rainfallIntensity %>mm/h</div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+    
+            <!-- Column 18 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-regular fa-snowflake"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Snow Fall: </div>
+                <div class="text-lg"><%= glacierSensorData[0].otherFactor.snowfall %> cm</div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+                    <!-- Column 19 -->
+                    <div class="flex items-center justify-start rounded-lg">
+                      <div class="text-2xl text-white">
+                        <!-- Icon (example: sun) -->
+                        <i class="fa-solid fa-cloud-meatball"></i>
+                      </div>
+                      <div class="ml-4 flex items-center justify-between w-full gap-2">
+                        <div class="text-sm font-semibold">Precipitation: </div>
+                        <div class="text-lg"><%= glacierSensorData[0].otherFactor.precipitation %> mm</div>
+                        <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                      </div>
+                    </div>
+    
+                    
+            <!-- Column 19 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-cube"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Ice Melt Rate: </div>
+                <div class="text-lg"><%= glacierSensorData[0].otherFactor.iceMeltRate%> cm/h</div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+            <!-- Column 20 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-hill-rockslide"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Land Slide Risk: </div>
+                <div class="text-lg"><%= glacierSensorData[0].otherFactor.landslideRisk %></div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+            <!-- Column 21 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-hill-avalanche"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Avalanche Risk: </div>
+                <div class="text-lg"><%= glacierSensorData[0].otherFactor.avalancheRisk %></div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+            <!-- Column 22 -->
+            <div class="flex items-center justify-start rounded-lg">
+              <div class="text-2xl text-white">
+                <!-- Icon (example: sun) -->
+                <i class="fa-solid fa-house-crack"></i>
+              </div>
+              <div class="ml-4 flex items-center justify-between w-full gap-2">
+                <div class="text-sm font-semibold">Earthquake Risk: </div>
+                <div class="text-lg"><%= glacierSensorData[0].otherFactor.earthquakeRisk %></div>
+                <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+              </div>
+            </div>
+    
+    
+            <!-- Column 24 -->
+            </div>
+            <!-- <div class="flex items-center justify-center gap-7">
+              <% if (glacierSensorData[0].alertLevel == 1) {%>
+                <div
+                class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-lime-600 h-24 w-24 relative"
+              >
+                <% } %>
+                <% if (glacierSensorData[0].alertLevel == 2) {%>
+                  <div
+                  class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-400 h-24 w-24 relative"
+                >
+                  <% } %>
+                  <% if (glacierSensorData[0].alertLevel == 3) {%>
+                    <div
+                    class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-600 h-24 w-24 relative"
+                  >
+                    <% } %>
+                    <% if (glacierSensorData[0].alertLevel == 4) {%>
+                      <div
+                      class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-orange-500 h-24 w-24 relative"
+                    >
+                      <% } %>
+                      <% if (glacierSensorData[0].alertLevel == 5) {%>
+                        <div
+                        class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-red-700 h-24 w-24 relative"
+                      >
+                        <% } %>
+               
+                <svg
+                  class="w-96 h-96"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                  ></path>
+                </svg>
+                <div class="absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-3xl"><%= glacierSensorData[0].alertLevel %></div>
+              </div>
+             
+              <div class="flex items-center justify-end gap-2">
+                <div class="font-bold text-lg text-white">Last Updated:</div>
+                <div class="font-semibold text-xl text-white"><%= glacierSensorData[0].recordedAt.toString().split(" ").slice(1,4).join("-") %> / </div>
+              <div class="font-semibold text-xl text-white"><%= glacierSensorData[0].recordedAt.toString().split(" ")[4].slice(0,5) %></div>
+              </div> -->
           </div>
-         
-          <div class="flex items-center justify-end gap-2">
-            <div class="font-bold text-lg text-white">Last Updated:</div>
-            <div class="font-semibold text-xl text-white">26-11-2024 / </div>
-            <div class="font-semibold text-xl text-white">19:10</div>
-          </div>
-      </div>
+          <%}%>
     </div>
+
+
 <!--     
     <div
       class="mx-auto mt-10 w-full flex flex-col gap-5 items-center justify-center"
