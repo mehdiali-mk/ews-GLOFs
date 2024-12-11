@@ -66,11 +66,7 @@ app.get("/", async (request, response) => {
 app.get("/glacier/:id/historical", async (request, response) => {
   const {id} = request.params;
 
-});
-
-app.get("/glacier/:id", async (request, response) => {
-  const { id } = request.params;
-
+  
   const glacierSensorData = await SensorData.find({ glacialId: id }).sort({
     recordedAt: -1,
   });
@@ -179,7 +175,7 @@ app.get("/glacier/:id", async (request, response) => {
   // console.log(glacierSensorData)
   // console.log(temperatureData)
   // console.log(glacierSensorData)
-  response.render("about.ejs", {
+  response.render("historicalData.ejs", {
     glacierData,
     glacierSensorData,
     id,
@@ -210,6 +206,18 @@ app.get("/glacier/:id", async (request, response) => {
     iceMeltRateData,
     alertLevelData,
   });
+});
+
+app.get("/glacier/:id", async (request, response) => {
+  const { id } = request.params;
+
+  const glacierSensorData = await SensorData.find({ glacialId: id }).sort({
+    recordedAt: -1,
+  });
+  const glacierData = await Glacial.findById(id);
+  const glacierFirstData = glacierSensorData[0];
+  response.render("about", { id, glacierData, glacierFirstData });
+
 });
 
 app.post("/glacier/:id", async (request, response) => {
