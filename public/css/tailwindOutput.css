@@ -963,6 +963,10 @@ input[type="range"]::-ms-fill-lower {
   margin-top: 2rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -981,10 +985,6 @@ input[type="range"]::-ms-fill-lower {
 
 .hidden {
   display: none;
-}
-
-.h-0 {
-  height: 0px;
 }
 
 .h-24 {
@@ -1009,14 +1009,6 @@ input[type="range"]::-ms-fill-lower {
 
 .h-96 {
   height: 24rem;
-}
-
-.h-4 {
-  height: 1rem;
-}
-
-.w-0 {
-  width: 0px;
 }
 
 .w-1\/2 {
@@ -1059,8 +1051,25 @@ input[type="range"]::-ms-fill-lower {
   width: 100%;
 }
 
-.w-4 {
-  width: 1rem;
+.w-\[100\%\] {
+  width: 100%;
+}
+
+.w-\[50\%\] {
+  width: 50%;
+}
+
+.w-\[70\%\] {
+  width: 70%;
+}
+
+.w-\[55\%\] {
+  width: 55%;
+}
+
+.-translate-x-\[100\%\] {
+  --tw-translate-x: -100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .-translate-x-\[50\%\] {
