@@ -52,7 +52,7 @@ app.get("/", async (request, response) => {
     });
     // console.log(glacierSensorData)
     glacierSensorData = glacierSensorData.splice(0, 1);
-    // console.log(glacierSensorData)
+    console.log(glacierSensorData[0].alertLevel)
     allSenorData.push(glacierSensorData[0])
     // console.log(newSensorData)
   }

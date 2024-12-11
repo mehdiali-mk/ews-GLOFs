@@ -19,15 +19,15 @@
   </head>
 
   <body class="">
-    <div class="flex items-center justify-center relative">
+    <!-- <div class="flex items-center justify-center relative">
       <h1
         class="text-2xl text-white font-black text-center bg-black inline-block px-8 py-8 pt-10 absolute -top-5 rounded-3xl"
       >
         <%= glacierData.glacialName %>
       </h1>
-    </div>
-    <div class="w-full mt-24 flex items-start justify-between px-4">
-      <div class="flex flex-col gap-4">
+    </div> -->
+    <div class="w-full mt-16 flex items-end justify-between px-4">
+      <div class="flex gap-3">
         <a
           href="/"
           class="text-center ml-10 bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full"
@@ -36,13 +36,13 @@
         <form
           action="/glacier/<%= id %>"
           method="post"
-          class="ml-10 bg-black px-4 py-2 text-lg text-center inline-block text-white font-bold rounded-full"
+          class="bg-black px-4 py-2 text-lg text-center inline-block text-white font-bold rounded-full"
         >
           <button type="submit">Generate</button>
         </form>
         <a
           href="/glacier/<%= id %>"
-          class="text-center ml-10 bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full"
+          class="text-center bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full"
           >allData</a
         >
       </div>
@@ -50,11 +50,11 @@
         id="findForm"
         action="/glacier/<%= id %>/date"
         method="post"
-        class="flex items-center justify-center flex-col gap-4"
+        class="flex items-end justify-center gap-3"
       >
-        <div class="flex items-center justify-center gap-4 mr-10">
-          <div class="flex items-center justify-center gap-2 flex-col">
-            <div class="text-xl text-black font-bold">Start Date</div>
+        <div class="flex items-center justify-center gap-3">
+          <div class="flex items-center justify-center gap-1 flex-col">
+            <div class="text-lg text-black font-bold">Start Date</div>
             <input
               type="date"
               name="date[startDate]"
@@ -63,8 +63,8 @@
               class="bg-white text-black rounded-full outline-none border-2 border-black"
             />
           </div>
-          <div class="flex items-center justify-center gap-2 flex-col">
-            <div class="text-xl text-black font-bold">End Date</div>
+          <div class="flex items-center justify-center gap-1 flex-col">
+            <div class="text-lg text-black font-bold">End Date</div>
             <input
               type="date"
               name="date[endDate]"
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div
-          class="flex items-center justify-center mr-10 bg-black text-white w-[90%] py-2 rounded-full"
+        class="text-center bg-black px-4 py-2 text-lg inline-block text-white font-bold rounded-full mr-10"
         >
           <!-- <div></div> -->
           <button
@@ -88,6 +88,507 @@
         </div>
       </form>
     </div>
+
+    <div class="mx-auto mt-10 w-full flex flex-col gap-5 items-center justify-center">
+      <div class="w-[80vw] bg-indigo-600 text-white px-4 py-2 rounded-lg">
+        <div class="flex items-center justify-end gap-2">
+          <div class="font-bold text-lg text-white">Last Updated:</div>
+          <div class="font-semibold text-xl text-white">26-11-2024 / </div>
+          <div class="font-semibold text-xl text-white">19:10</div>
+        </div>
+        <div class="w-full flex items-center justify-center mt-8">
+        <div class="flex items-center justify-start gap-7">
+          <% if (glacierSensorData[0].alertLevel == 1) {%>
+            <div
+            class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-lime-600 h-24 w-24 relative"
+          >
+            <% } %>
+            <% if (glacierSensorData[0].alertLevel == 2) {%>
+              <div
+              class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-400 h-24 w-24 relative"
+            >
+              <% } %>
+              <% if (glacierSensorData[0].alertLevel == 3) {%>
+                <div
+                class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-600 h-24 w-24 relative"
+              >
+                <% } %>
+                <% if (glacierSensorData[0].alertLevel == 4) {%>
+                  <div
+                  class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-orange-500 h-24 w-24 relative"
+                >
+                  <% } %>
+                  <% if (glacierSensorData[0].alertLevel == 5) {%>
+                    <div
+                    class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-red-700 h-24 w-24 relative"
+                  >
+                    <% } %>
+           
+            <svg
+              class="w-96 h-96"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+              ></path>
+            </svg>
+            <div class="absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-3xl"><%= glacierSensorData[0].alertLevel %></div>
+          </div>
+         
+          <div class="flex items-start justify-start flex-col">
+            <div class="text-6xl font-black">Glacier Name</div>
+            <div class="flex items-center justify-center gap-2">
+              <div class="text-lg font-bold text-white">Region</div>
+              <div class="text-lg font-bold text-white">Longitude</div>
+              <div class="text-lg font-bold text-white">Latitude</div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="w-full text-xl font-bold mt-3 flex items-start justify-start">Glacier Area: 2300 KM <span class="-translate-y-2">2</span></div>
+        <div class="w-full text-xl font-bold mt-3 flex items-start justify-start gap-2">
+          <div>Affected Areas:</div> 
+          <div class="flex items-start justify-start gap-2">
+            <div class="font-normal">Ahmedabd,</div>
+            <div class="font-normal">Kolkata,</div>
+            <div class="font-normal">Mumbai,</div>
+          </div>
+        </div>
+        <!-- <div class="w-full text-xl font-bold mt-3 flex items-start justify-start">
+          Data Collected from Artic Tern:
+        </div> -->
+
+        <div class=" mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
+          <!-- Column 1 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+        
+          <!-- Column 2 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Wind Speed: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+        
+          <!-- Column 3 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Wind Direction: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 5 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 6 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+
+          <!-- Column 7 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 8 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+
+          <!-- Column 9 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 10 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 11 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 12 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 13 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
+          <!-- Column 14 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+          
+
+          <!-- Column 15 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-white">
+              <!-- Icon (example: sun) -->
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-start gap-2">
+              <div class="text-lg font-semibold">Temperature: </div>
+              <div class="text-xl">22°C</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+        
+        
+        <!-- Column 16 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 17 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+
+        <!-- Column 18 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 19 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 20 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 21 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 22 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        
+        <!-- Column 23 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        
+        <!-- Column 24 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 25 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        
+        <!-- Column 26 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        
+        <!-- Column 27 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        
+        <!-- Column 28 -->
+        <div class="flex items-center justify-start p-2 rounded-lg">
+          <div class="text-2xl text-white">
+            <!-- Icon (example: sun) -->
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-start gap-2">
+            <div class="text-lg font-semibold">Temperature: </div>
+            <div class="text-xl">22°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="w-full mx-auto mt-10 flex flex-col gap-3 items-center justify-center">
+      <div class="w-[80vw] text-white">
+        <div class="text-3xl text-black font-bold">Historical Data</div>
+      </div>
+    </div>
+
+    <div class="w-full mx-auto mt-10 flex flex-col gap3 items-center justify-center">
+      <div class="w-[80vw] bg-indigo-600 text-white px-4 py-2 rounded-lg">
+        <div class="flex items-center justify-center gap-7">
+          <% if (glacierSensorData[0].alertLevel == 1) {%>
+            <div
+            class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-lime-600 h-24 w-24 relative"
+          >
+            <% } %>
+            <% if (glacierSensorData[0].alertLevel == 2) {%>
+              <div
+              class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-400 h-24 w-24 relative"
+            >
+              <% } %>
+              <% if (glacierSensorData[0].alertLevel == 3) {%>
+                <div
+                class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-yellow-600 h-24 w-24 relative"
+              >
+                <% } %>
+                <% if (glacierSensorData[0].alertLevel == 4) {%>
+                  <div
+                  class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-orange-500 h-24 w-24 relative"
+                >
+                  <% } %>
+                  <% if (glacierSensorData[0].alertLevel == 5) {%>
+                    <div
+                    class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-red-700 h-24 w-24 relative"
+                  >
+                    <% } %>
+           
+            <svg
+              class="w-96 h-96"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+              ></path>
+            </svg>
+            <div class="absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-3xl"><%= glacierSensorData[0].alertLevel %></div>
+          </div>
+         
+          <div class="flex items-center justify-end gap-2">
+            <div class="font-bold text-lg text-white">Last Updated:</div>
+            <div class="font-semibold text-xl text-white">26-11-2024 / </div>
+            <div class="font-semibold text-xl text-white">19:10</div>
+          </div>
+      </div>
+    </div>
+<!--     
     <div
       class="mx-auto mt-10 w-full flex flex-col gap-5 items-center justify-center"
     >
@@ -134,7 +635,6 @@
         </span>
       </div>
       <%}%> <% } %> <% if (glacierSensorData.length === 0) { %>
-      <!-- <div class="bg-black text-white font-bold text-xl w-[80vw] px-4 py-10 rounded-lg text-center">No Record Found</div> -->
       <div
         class="text-black font-bold text-5xl w-[80vw] px-4 py-20 rounded-lg text-center"
       >
@@ -143,29 +643,40 @@
       <% } %>
     </div>
 
-    <div class="w-full flex items-center justify-center py-10 flex-col gap-8">
+     -->
+     <div class="w-full mx-auto mt-10 flex flex-col gap-3 items-center justify-center">
+      <div class="w-[80vw] text-white">
+        <div class="text-3xl text-black font-bold">Graphical Data</div>
+      </div>
+    </div>
+
+     <div class="w-full flex items-center justify-center py-10 flex-col gap-8">
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
+        <div class="text-center font-bold text-xl">Artic Tern</div>
         <canvas id="combinedChart1"></canvas>
       </div>
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
+      <div class="text-center font-bold text-xl">Penguin</div>
         <canvas id="combinedChart2"></canvas>
       </div>
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
+      <div class="text-center font-bold text-xl">Eel</div>
         <canvas id="combinedChart3"></canvas>
       </div>
       <div
-        class="bg-white w-[60%] h-96 flex items-center justify-center rounded-xl py-4"
+        class="bg-white w-[60%] h-96 flex items-center justify-center flex-col rounded-xl py-6 gap-3"
       >
+      <div class="text-center font-bold text-xl">Other Factor</div>
         <canvas id="combinedChart4"></canvas>
       </div>
     </div>
-    , , , ,
+   
     <div class="hidden" id="temperatureDataId"><%= temperatureData %></div>
     <div class="hidden" id="lakeSizeDataId"><%= lakeSizeData %></div>
     <div class="hidden" id="windSpeedDataId"><%= windSpeedData %></div>
