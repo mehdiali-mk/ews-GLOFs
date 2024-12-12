@@ -128,7 +128,9 @@ randomDataGenerator = (objectId, dateAndTime) => {
   const damPressure = parseFloat(
     Math.min(150, groundPressure * 1.2).toFixed(2)
   ); // Dam pressure depends on ground pressure
-
+  
+  const morainePressure = parseFloat((Math.min(100, groundPressure * 1.2) + Math.random() * 50).toFixed(2));  
+  
   const windSpeed = parseFloat((Math.random() * 10 + 2).toFixed(2)); // Wind speed between 2 m/s and 12 m/s
   const windDirection = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][
     Math.floor(Math.random() * 8)
@@ -172,7 +174,7 @@ randomDataGenerator = (objectId, dateAndTime) => {
   riskScore += (waterLevel > 20 ? 2 : 0) + (lakeSize > 15 ? 2 : 0); // High water level and large lake = higher risk
 
   // 3. Ground and Dam Pressure:
-  riskScore += (groundPressure > 110 ? 2 : 0) + (damPressure > 130 ? 2 : 0); // High ground and dam pressure = higher risk
+  riskScore += (groundPressure > 110 ? 2 : 0) + ((damPressure > 130 ? 2 : 0) / 2) + ((morainePressure > 80 ? 2 : 0) / 2); // High ground and dam pressure = higher risk
 
   // 4. Rainfall Intensity and Soil Moisture:
   riskScore += (rainfallIntensity > 10 ? 2 : 0) + (soilMoisture > 50 ? 2 : 0); // High rainfall and soil moisture = increased risk
@@ -253,6 +255,7 @@ randomDataGenerator = (objectId, dateAndTime) => {
     },
     eel: {
       damPressure, // Depends on ground pressure
+      morainePressure, // Dependent on ground pressure
       groundPressure, // Dependent on lake size
       phValue,
       iceThickness, // Based on water flow rate

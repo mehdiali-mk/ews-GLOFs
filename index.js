@@ -35,7 +35,11 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname + "/public")));
 
-app.get("/", async (request, response) => {
+app.get("/", (request, response) => {
+  response.render("home.ejs");
+})
+
+app.get("/allGlacier", async (request, response) => {
   const allGlacierData = await Glacial.find({});
   let allGlacierId = [];
 
@@ -60,7 +64,7 @@ app.get("/", async (request, response) => {
   console.log(allSenorData)
 
   // console.log(allGlacierData);
-  response.render("home.ejs", {allGlacierData, allSenorData });
+  response.render("allGlacier.ejs", {allGlacierData, allSenorData });
 });
 
 app.get("/glacier/:id/historical", async (request, response) => {
@@ -85,6 +89,7 @@ app.get("/glacier/:id/historical", async (request, response) => {
   let groundCompositionData = [];
 
   let damPressureData = [];
+  let morainePressureData = [];
   let groundPressureData = [];
   let phValueData = [];
   let iceThicknessData = [];
@@ -131,6 +136,7 @@ app.get("/glacier/:id/historical", async (request, response) => {
 
     // Eel Data Fetch.
     damPressureData.push(glacierSensorData[glacierIndex].eel.damPressure);
+    morainePressureData.push(glacierSensorData[glacierIndex].eel.morainePressure);
     groundPressureData.push(glacierSensorData[glacierIndex].eel.groundPressure);
     phValueData.push(glacierSensorData[glacierIndex].eel.phValue);
     iceThicknessData.push(glacierSensorData[glacierIndex].eel.iceThickness);
@@ -150,6 +156,7 @@ app.get("/glacier/:id/historical", async (request, response) => {
     iceMeltRateData.push(
       glacierSensorData[glacierIndex].otherFactor.iceMeltRate
     );
+
     alertLevelData.push(glacierSensorData[glacierIndex].alertLevel);
 
     let date = glacierSensorData[glacierIndex].recordedAt;
@@ -194,6 +201,7 @@ app.get("/glacier/:id/historical", async (request, response) => {
     groundCompositionData,
 
     damPressureData,
+    morainePressureData,
     groundPressureData,
     phValueData,
     iceThicknessData,
@@ -216,7 +224,7 @@ app.get("/glacier/:id", async (request, response) => {
   });
   const glacierData = await Glacial.findById(id);
   const glacierFirstData = glacierSensorData[0];
-  response.render("about", { id, glacierData, glacierFirstData });
+  response.render("glacierData", { id, glacierData, glacierFirstData });
 
 });
 
@@ -252,15 +260,35 @@ app.post("/glacier/:id/date", async (request, response) => {
       $gte: startDate,
       $lte: endDate,
     },
-  }).sort({ recordedAt: -1 });
+  });
   const glacierData = await Glacial.findById(id);
-
   let temperatureData = [];
   let lakeSizeData = [];
   let windSpeedData = [];
   let altitudeData = [];
   let humidityData = [];
   let co2LevelData = [];
+
+  let waterLevelData = [];
+  let waterTemperatureData = [];
+  let waterFlowRateData = [];
+  let groundTemperatureData = [];
+  let groundCompositionData = [];
+
+  let damPressureData = [];
+  let morainePressureData = [];
+  let groundPressureData = [];
+  let phValueData = [];
+  let iceThicknessData = [];
+  let soilTemperatureData = [];
+  let soilMoistureData = [];
+
+  let rainfallIntensityData = [];
+  let snowfallData = [];
+  let precipitationData = [];
+  let iceMeltRateData = [];
+  let alertLevelData = [];
+
   let recordedAtData = [];
 
   for (glacierIndex in glacierSensorData) {
@@ -278,7 +306,45 @@ app.post("/glacier/:id/date", async (request, response) => {
       )
     );
 
+    // Penguin Data Fetch
+    waterLevelData.push(glacierSensorData[glacierIndex].penguin.waterLevel);
+    waterTemperatureData.push(
+      glacierSensorData[glacierIndex].penguin.waterTemperature
+    );
+    waterFlowRateData.push(
+      glacierSensorData[glacierIndex].penguin.waterFlowRate
+    );
+    groundTemperatureData.push(
+      glacierSensorData[glacierIndex].penguin.groundTemperature
+    );
+    groundCompositionData.push(
+      glacierSensorData[glacierIndex].penguin.groundComposition
+    );
+
+    // Eel Data Fetch.
+    damPressureData.push(glacierSensorData[glacierIndex].eel.damPressure);
+    morainePressureData.push(glacierSensorData[glacierIndex].eel.morainePressure);
+    groundPressureData.push(glacierSensorData[glacierIndex].eel.groundPressure);
+    phValueData.push(glacierSensorData[glacierIndex].eel.phValue);
+    iceThicknessData.push(glacierSensorData[glacierIndex].eel.iceThickness);
+    soilTemperatureData.push(
+      glacierSensorData[glacierIndex].eel.soilTemperature
+    );
+    soilMoistureData.push(glacierSensorData[glacierIndex].eel.soilMoisture);
     // let dateString = String(glacierSensorData[glacierIndex].recordedAt);
+
+    rainfallIntensityData.push(
+      glacierSensorData[glacierIndex].otherFactor.rainfallIntensity
+    );
+    snowfallData.push(glacierSensorData[glacierIndex].otherFactor.snowfall);
+    precipitationData.push(
+      glacierSensorData[glacierIndex].otherFactor.precipitation
+    );
+    iceMeltRateData.push(
+      glacierSensorData[glacierIndex].otherFactor.iceMeltRate
+    );
+
+    alertLevelData.push(glacierSensorData[glacierIndex].alertLevel);
 
     let date = glacierSensorData[glacierIndex].recordedAt;
 
@@ -299,19 +365,11 @@ app.post("/glacier/:id/date", async (request, response) => {
     // console.log(typeof(String(glacierSensorData[glacierIndex].recordedAt)))
   }
   let totalEntriesLength = glacierSensorData.length;
-  console.log(
-    lakeSizeData,
-    windSpeedData,
-    altitudeData,
-    humidityData,
-    co2LevelData,
-    recordedAtData
-  );
-
-  if (glacierSensorData.length === 0) {
-    console.log(glacierSensorData);
-  }
-  response.render("about.ejs", {
+  console.log(rainfallIntensityData, snowfallData, precipitationData, iceMeltRateData, alertLevelData);
+  // console.log(glacierSensorData)
+  // console.log(temperatureData)
+  // console.log(glacierSensorData)
+  response.render("historicalData.ejs", {
     glacierData,
     glacierSensorData,
     id,
@@ -323,8 +381,31 @@ app.post("/glacier/:id/date", async (request, response) => {
     altitudeData,
     humidityData,
     co2LevelData,
+    waterLevelData,
+    waterTemperatureData,
+    waterFlowRateData,
+    groundTemperatureData,
+    groundCompositionData,
+
+    damPressureData,
+    morainePressureData,
+    groundPressureData,
+    phValueData,
+    iceThicknessData,
+    soilTemperatureData,
+    soilMoistureData,
+
+    rainfallIntensityData,
+    snowfallData,
+    precipitationData,
+    iceMeltRateData,
+    alertLevelData,
   });
 });
+
+app.get("/datamodels", (request, response) => {
+  response.render("dataModel.ejs");
+})
 
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);

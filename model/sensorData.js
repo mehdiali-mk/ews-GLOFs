@@ -63,7 +63,10 @@ const sensorDataSchema = new Schema({
       type: "Number",
       required: true,
     },
-    
+    morainePressure: {
+      type: "Number",
+      required: true,
+    },
     groundPressure: {
       type: "Number",
       required: true,

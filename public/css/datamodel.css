@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2em;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    padding: 6px 15px;
+    border-radius: 20px;
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+
+nav a.active {
+    background: #000;
+    color: #fff;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.8); /* Ice-like transparency */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #cce7ff; /* Subtle glacier blue border */
+}
+
+.row:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.row img {
+    width: 350px;
+    height: auto;
+    border-radius: 15px;
+    border: 4px solid #b3daff; /* Glacier blue border for images */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+    flex: 1;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #002244; /* Deep blue for better contrast */
+}
+
+/* Additional Glacier-Themed Elements */
+h1, h2, h3 {
+    color: #004080; /* Glacier theme headings */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    background: #004d99; /* Deep glacier blue */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #003366; /* Darker glacier blue on hover */
+}
+
+a {
+    color: #004d99;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #003366;
+} */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #4a90e2, #9013fe);
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.row:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.row img {
+    width: 350px;
+    height: auto;
+    border-radius: 15px;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+    flex: 1;
+    font-size: 18px;
+    line-height: 1.6;
+} 
+
+ /* body {
+    font-family: Arial, sans-serif;
+    margin: 90px;
+    padding: 0;
+    //background: #666;//
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+.row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.row img {
+    width: 350px;
+    height: auto;
+    border-radius: 90px;
+}
+.content {  q
+    flex: 1;
+} */

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/stylesBootstrap.css" />
     <link rel="stylesheet" href="/css/fontawesome.css" />
     <link rel="stylesheet" href="/css/tailwindOutput.css" />
+    <link rel="stylesheet" href="/css/home.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -19,6 +20,18 @@
   </head>
 
   <body class="">
+
+    <header>
+      <a href="#" class="logo">Hindu Kush Himalayan Glaciers</a>
+      <nav>
+          <a href="/">Home</a>
+          <!-- <a href="http://127.0.0.1:5501/Info.html#">Info</a> -->
+          <a href="/allGlacier">Live Database</a>
+          <a href="/dataModels" class="active">Data Model</a>
+          <!-- <a href="http://127.0.0.1:5501/others.html#">Others</a>
+          <a href="http://127.0.0.1:5501/aboutus.html#">About Us</a> -->
+      </nav>
+  </header>
     <!-- <div class="flex items-center justify-center relative">
       <h1
         class="text-2xl text-white font-black text-center bg-black inline-block px-8 py-8 pt-10 absolute -top-5 rounded-3xl"
@@ -26,7 +39,7 @@
         <%= glacierData.glacialName %>
       </h1>
     </div> -->
-    <div class="w-full mt-16 flex items-end justify-between px-4">
+    <div class="w-full mt-24 flex items-end justify-between px-4">
       <div class="flex gap-3">
         <a
           href="/"
@@ -49,23 +62,23 @@
       >
         <div class="flex items-center justify-center gap-3">
           <div class="flex items-center justify-center gap-1 flex-col">
-            <div class="text-lg text-secondary font-bold">Start Date</div>
+            <div class="text-lg text-black font-bold">Start Date</div>
             <input
               type="date"
               name="date[startDate]"
               required
               id="startDate"
-              class="bg-white text-secondary rounded-full outline-none border-2 border-secondary"
+              class="bg-white text-black rounded-full outline-none border-2 border-secondary"
             />
           </div>
           <div class="flex items-center justify-center gap-1 flex-col">
-            <div class="text-lg text-secondary font-bold">End Date</div>
+            <div class="text-lg text-black font-bold">End Date</div>
             <input
               type="date"
               name="date[endDate]"
               required
               id="endDate"
-              class="bg-white text-secondary rounded-full outline-none border-2 border-secondary"
+              class="bg-white text-black rounded-full outline-none border-2 border-secondary"
             />
           </div>
         </div>
@@ -86,8 +99,8 @@
 
 
     <div class="w-full mx-auto mt-10 flex flex-col gap-3 items-center justify-center">
-      <div class="w-[80vw] text-primary">
-        <div class="text-3xl text-secondary font-bold">Historical Data</div>
+      <div class="w-[80vw] text-black">
+        <div class="text-3xl font-bold text-center">Historical Data</div>
       </div>
     </div>
 
@@ -153,11 +166,11 @@
                   <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
                 <div class="text-xl font-bold">Alert Type:</div>
-                <div class="text-lg font-semibold"><%= glacierSensorData[0].alertType %></div> 
+                <div class="text-lg font-semibold"><%= data .alertType %></div> 
               </div>
               <div class="w-full flex items-start justify-start gap-2">
                 <div class="w-[55%] text-xl font-bold">Observation Notes:</div>
-                <div class="text-lg font-semibold"><%= glacierSensorData[0].observationNotes %></div> 
+                <div class="text-lg font-semibold"><%= data .observationNotes %></div> 
               </div>
             </div>
 
@@ -171,7 +184,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Lake Size: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].articTern.lakeSize %> km²</div>
+                  <div class="text-lg"><%= data .articTern.lakeSize %> km²</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -184,7 +197,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Temperature: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].articTern.temperature %> °C</div>
+                  <div class="text-lg"><%= data .articTern.temperature %> °C</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -197,7 +210,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Wind Speed: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].articTern.windSpeed %> m/s</div>
+                  <div class="text-lg"><%= data .articTern.windSpeed %> m/s</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -210,7 +223,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Wind Direction: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].articTern.windDirection%></div>
+                  <div class="text-lg"><%= data .articTern.windDirection%></div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -223,7 +236,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Altitude: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].articTern.altitude %> m</div>
+                  <div class="text-lg"><%= data .articTern.altitude %> m</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -237,7 +250,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Humidity: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].articTern.humidity %> %</div>
+                  <div class="text-lg"><%= data .articTern.humidity %> %</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -250,7 +263,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">CO₂ Level: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].articTern.co2Level %> ppm</div>
+                  <div class="text-lg"><%= data .articTern.co2Level %> ppm</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -264,7 +277,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Water Level: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].penguin.waterLevel %> m</div>
+                  <div class="text-lg"><%= data .penguin.waterLevel %> m</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -277,7 +290,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Water Temperature: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].penguin.waterTemperature %>°C</div>
+                  <div class="text-lg"><%= data .penguin.waterTemperature %>°C</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -290,7 +303,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Water Flow Rate: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].penguin.waterFlowRate %> m³/s</div>
+                  <div class="text-lg"><%= data .penguin.waterFlowRate %> m³/s</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -303,7 +316,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Ground Temperature:</div>
-                  <div class="text-base"><%= glacierSensorData[0].penguin.groundTemperature %>°C</div>
+                  <div class="text-base"><%= data .penguin.groundTemperature %>°C</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -316,7 +329,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Ground Composition: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].penguin.groundComposition %>%</div>
+                  <div class="text-lg"><%= data .penguin.groundComposition %>%</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -329,10 +342,23 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Dam Pressure: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].eel.damPressure %> kPa</div>
+                  <div class="text-lg"><%= data .eel.damPressure %> kPa</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
+                        <!-- Column 14 -->
+          <div class="flex items-center justify-start p-2 rounded-lg">
+            <div class="text-2xl text-primary">
+              <!-- Icon (example: sun) -->
+              <i class="fa-solid fa-road-spikes"></i>
+            </div>
+            <div class="ml-4 flex items-center justify-between w-full gap-2">
+              <div class="text-sm font-semibold">MorainePressure: </div>
+              <div class="text-lg"><%= data .eel.morainePressure %>kPa</div>
+              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+            </div>
+          </div>
+
               
               <!-- Column 14 -->
               <div class="flex items-center justify-start rounded-lg">
@@ -342,7 +368,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">GroundPressure:</div>
-                  <div class="text-lg"><%= glacierSensorData[0].eel.groundPressure %>kPa</div>
+                  <div class="text-lg"><%= data .eel.groundPressure %>kPa</div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -356,7 +382,7 @@
                 </div>
                 <div class="ml-4 flex items-center justify-between w-full gap-2">
                   <div class="text-sm font-semibold">Ph Value: </div>
-                  <div class="text-lg"><%= glacierSensorData[0].eel.phValue %></div>
+                  <div class="text-lg"><%= data .eel.phValue %></div>
                   <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                 </div>
               </div>
@@ -370,7 +396,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Ice Thickness: </div>
-                <div class="text-lg"><%= glacierSensorData[0].eel.iceThickness %> cm</div>
+                <div class="text-lg"><%= data .eel.iceThickness %> cm</div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -385,7 +411,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Soil Temperature: </div>
-                <div class="text-lg"><%= glacierSensorData[0].eel.soilTemperature %>°C</div>
+                <div class="text-lg"><%= data .eel.soilTemperature %>°C</div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -398,7 +424,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Soil Moisture: </div>
-                <div class="text-lg"><%= glacierSensorData[0].eel.soilMoisture %> %</div>
+                <div class="text-lg"><%= data .eel.soilMoisture %> %</div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -411,7 +437,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">RainFallIntensity: </div>
-                <div class="text-lg"><%= glacierSensorData[0].otherFactor.rainfallIntensity %>mm/h</div>
+                <div class="text-lg"><%= data .otherFactor.rainfallIntensity %>mm/h</div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -425,7 +451,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Snow Fall: </div>
-                <div class="text-lg"><%= glacierSensorData[0].otherFactor.snowfall %> cm</div>
+                <div class="text-lg"><%= data .otherFactor.snowfall %> cm</div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -438,7 +464,7 @@
                       </div>
                       <div class="ml-4 flex items-center justify-between w-full gap-2">
                         <div class="text-sm font-semibold">Precipitation: </div>
-                        <div class="text-lg"><%= glacierSensorData[0].otherFactor.precipitation %> mm</div>
+                        <div class="text-lg"><%= data .otherFactor.precipitation %> mm</div>
                         <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
                       </div>
                     </div>
@@ -452,7 +478,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Ice Melt Rate: </div>
-                <div class="text-lg"><%= glacierSensorData[0].otherFactor.iceMeltRate%> cm/h</div>
+                <div class="text-lg"><%= data .otherFactor.iceMeltRate%> cm/h</div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -465,7 +491,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Land Slide Risk: </div>
-                <div class="text-lg"><%= glacierSensorData[0].otherFactor.landslideRisk %></div>
+                <div class="text-lg"><%= data .otherFactor.landslideRisk %></div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -478,7 +504,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Avalanche Risk: </div>
-                <div class="text-lg"><%= glacierSensorData[0].otherFactor.avalancheRisk %></div>
+                <div class="text-lg"><%= data .otherFactor.avalancheRisk %></div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -491,7 +517,7 @@
               </div>
               <div class="ml-4 flex items-center justify-between w-full gap-2">
                 <div class="text-sm font-semibold">Earthquake Risk: </div>
-                <div class="text-lg"><%= glacierSensorData[0].otherFactor.earthquakeRisk %></div>
+                <div class="text-lg"><%= data .otherFactor.earthquakeRisk %></div>
                 <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
               </div>
             </div>
@@ -500,7 +526,7 @@
             <!-- Column 24 -->
             </div>
             <!-- <div class="flex items-center justify-center gap-7">
-              <% if (glacierSensorData[0].alertLevel == 1) {%>
+              <% if (data .alertLevel == 1) {%>
                 <div
                 class="text-8xl self-center inline-flex items-center justify-center rounded-lg text-lime-600 h-24 w-24 relative"
               >
@@ -663,6 +689,7 @@
     </div>
 
     <div class="hidden" id="damPressureDataId"><%= damPressureData %></div>
+    <div class="hidden" id="morainePressureDataId"><%= morainePressureData %></div>
     <div class="hidden" id="groundPressureDataId">
       <%= groundPressureData %>
     </div>
@@ -728,7 +755,11 @@
         groundCompositionDataEl.innerHTML.split(",");
 
       const damPressureDataEl = document.querySelector("#damPressureDataId");
-      let damPressureDataArray = damPressureDataEl.innerHTML.split(",")
+      let damPressureDataArray = damPressureDataEl.innerHTML.split(",");
+
+      const morainePressureDataEl = document.querySelector("#morainePressureDataId");
+      let morainePressureDataArray = morainePressureDataEl.innerHTML.split(",");
+
       const groundPressureDataEl = document.querySelector(
         "#groundPressureDataId"
       );
@@ -803,6 +834,7 @@
           .reverse();
 
         const damPressure = damPressureDataArray.splice(0, 20).reverse();
+        const morainePressure = morainePressureDataArray.splice(0, 20);
 const groundPressure = groundPressureDataArray.splice(0, 20).reverse();
 const phValue = phValueDataArray.splice(0, 20).reverse();
 const iceThickness = iceThicknessDataArray.splice(0, 20).reverse();
@@ -844,6 +876,8 @@ const soilMoisture = soilMoistureDataArray.splice(0, 20).reverse();
           groundTemperature,
           groundComposition,
           damPressure,
+          morainePressure,
+          
 groundPressure,
 phValue,
 iceThickness,
@@ -877,6 +911,7 @@ alertLevel,
         groundComposition,
 
         damPressure,
+        morainePressure,
 groundPressure,
 phValue,
 iceThickness,
@@ -1064,6 +1099,14 @@ alertLevel,
   label: "Dam Pressure (Pa)",
   data: damPressure, // Replace with actual data for damPressure
   borderColor: "red",
+  borderWidth: 2,
+  fill: false,
+  tension: 0.1,
+},
+{
+  label: "Moraine Pressure (Pa)",
+  data: morainePressure, // Replace with actual data for morainePressure
+  borderColor: "teal", // Blue for moraine pressure
   borderWidth: 2,
   fill: false,
   tension: 0.1,
