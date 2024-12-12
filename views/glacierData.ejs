@@ -15,6 +15,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet"> -->
   </head>
@@ -27,6 +31,7 @@
           <a href="/">Home</a>
           <!-- <a href="http://127.0.0.1:5501/Info.html#">Info</a> -->
           <a href="/allGlacier">Live Database</a>
+          <a href="/glacier/map">Map</a>
           <a href="/dataModels">Data Model</a>
           <!-- <a href="http://127.0.0.1:5501/others.html#">Others</a>
           <a href="http://127.0.0.1:5501/aboutus.html#">About Us</a> -->
@@ -49,6 +54,7 @@
         <form
           action="/glacier/<%= id %>"
           method="post"
+          id="GenerateDataId"
           class="bg-secondary px-4 py-2 text-lg text-center inline-block text-primary font-bold rounded-full"
         >
           <button type="submit">Generate</button>
@@ -200,365 +206,376 @@
           </div>
         </div>
 
-        <div class=" mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
+      </div>
 
-          <!-- Column 0 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-ruler"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Lake Size: </div>
-              <div class="text-lg"><%= glacierFirstData.articTern.lakeSize %> km²</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-        
-          <!-- Column 1 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-temperature-three-quarters"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Temperature: </div>
-              <div class="text-lg"><%= glacierFirstData.articTern.temperature %> °C</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-        
-          <!-- Column 2 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-wind"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Wind Speed: </div>
-              <div class="text-lg"><%= glacierFirstData.articTern.windSpeed %> m/s</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-        
-          <!-- Column 3 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-regular fa-compass"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Wind Direction: </div>
-              <div class="text-lg"><%= glacierFirstData.articTern.windDirection%></div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
+      <div class=" mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
 
-          <!-- Column 6 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-ruler"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Altitude: </div>
-              <div class="text-lg"><%= glacierFirstData.articTern.altitude %> m</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-
-          <!-- Column 7 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-droplet"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Humidity: </div>
-              <div class="text-lg"><%= glacierFirstData.articTern.humidity %> %</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-          <!-- Column 8 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-smog"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">CO₂ Level: </div>
-              <div class="text-lg"><%= glacierFirstData.articTern.co2Level %> ppm</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-
-          <!-- Column 9 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-water"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Water Level: </div>
-              <div class="text-lg"><%= glacierFirstData.penguin.waterLevel %> m</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-          <!-- Column 10 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-temperature-low"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Water Temperature: </div>
-              <div class="text-lg"><%= glacierFirstData.penguin.waterTemperature %>°C</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-          <!-- Column 11 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-percent"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Water Flow Rate: </div>
-              <div class="text-lg"><%= glacierFirstData.penguin.waterFlowRate %> m³/s</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-          <!-- Column 12 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-temperature-low"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Ground Temperature:</div>
-              <div class="text-base"><%= glacierFirstData.penguin.groundTemperature %>°C</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-          <!-- Column 13 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-arrow-up-from-ground-water"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Ground Composition: </div>
-              <div class="text-lg"><%= glacierFirstData.penguin.groundComposition %>%</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-          <!-- Column 14 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-road-spikes"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Dam Pressure: </div>
-              <div class="text-lg"><%= glacierFirstData.eel.damPressure %> kPa</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
+        <div class="flex items-start flex-col justify-start p-2 rounded-lg bg-secondary text-primary hover:-translate-y-2 transition-all duration-200 animate__bounceInUp">
           
           
-          <!-- Column 14 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-road-spikes"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">MorainePressure: </div>
-              <div class="text-lg"><%= glacierFirstData.eel.morainePressure %>kPa</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-
-          <!-- Column 14 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-road-spikes"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">GroundPressure:</div>
-              <div class="text-lg"><%= glacierFirstData.eel.groundPressure %>kPa</div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-          
-
-          <!-- Column 15 -->
-          <div class="flex items-center justify-start p-2 rounded-lg">
-            <div class="text-2xl text-primary">
-              <!-- Icon (example: sun) -->
-              <i class="fa-solid fa-glass-water-droplet"></i>
-            </div>
-            <div class="ml-4 flex items-center justify-between w-full gap-2">
-              <div class="text-sm font-semibold">Ph Value: </div>
-              <div class="text-lg"><%= glacierFirstData.eel.phValue %></div>
-              <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-            </div>
-          </div>
-        
-        
-        <!-- Column 16 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
+        <!-- Column 0 -->
+        <div class="flex items-start justify-center p-2 rounded-lg w-full">
           <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-snowflake"></i>
+            <i class="fa-solid fa-ruler"></i>
           </div>
           <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Ice Thickness: </div>
-            <div class="text-lg"><%= glacierFirstData.eel.iceThickness %> cm</div>
+            <div class="text-sm font-semibold">Lake Size: </div>
+            <div class="text-lg"><%= glacierFirstData.articTern.lakeSize %> km²</div>
             <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
           </div>
         </div>
-
-                
-        
-        <!-- Column 16 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
+      
+        <!-- Column 1 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
           <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-temperature-three-quarters"></i>
           </div>
           <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Soil Temperature: </div>
-            <div class="text-lg"><%= glacierFirstData.eel.soilTemperature %>°C</div>
+            <div class="text-sm font-semibold">Temperature: </div>
+            <div class="text-lg"><%= glacierFirstData.articTern.temperature %> °C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+      
+        <!-- Column 2 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-wind"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Wind Speed: </div>
+            <div class="text-lg"><%= glacierFirstData.articTern.windSpeed %> m/s</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+      
+        <!-- Column 3 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-regular fa-compass"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Wind Direction: </div>
+            <div class="text-lg"><%= glacierFirstData.articTern.windDirection%></div>
             <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
           </div>
         </div>
 
-        <!-- Column 16 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
+        <!-- Column 6 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-ruler"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Altitude: </div>
+            <div class="text-lg"><%= glacierFirstData.articTern.altitude %> m</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+
+        <!-- Column 7 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
           <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
             <i class="fa-solid fa-droplet"></i>
           </div>
           <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Soil Moisture: </div>
-            <div class="text-lg"><%= glacierFirstData.eel.soilMoisture %> %</div>
+            <div class="text-sm font-semibold">Humidity: </div>
+            <div class="text-lg"><%= glacierFirstData.articTern.humidity %> %</div>
             <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
           </div>
         </div>
 
-        <!-- Column 17 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
+        <!-- Column 8 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
           <div class="text-2xl text-primary">
             <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-cloud-showers-water"></i>
+            <i class="fa-solid fa-smog"></i>
           </div>
           <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">RainFallIntensity: </div>
-            <div class="text-lg"><%= glacierFirstData.otherFactor.rainfallIntensity %>mm/h</div>
+            <div class="text-sm font-semibold">CO₂ Level: </div>
+            <div class="text-lg"><%= glacierFirstData.articTern.co2Level %> ppm</div>
             <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
           </div>
         </div>
 
-
-        <!-- Column 18 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-primary">
-            <!-- Icon (example: sun) -->
-            <i class="fa-regular fa-snowflake"></i>
-          </div>
-          <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Snow Fall: </div>
-            <div class="text-lg"><%= glacierFirstData.otherFactor.snowfall %> cm</div>
-            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-          </div>
-        </div>
-
-                <!-- Column 19 -->
-                <div class="flex items-center justify-start p-2 rounded-lg">
-                  <div class="text-2xl text-primary">
-                    <!-- Icon (example: sun) -->
-                    <i class="fa-solid fa-cloud-meatball"></i>
-                  </div>
-                  <div class="ml-4 flex items-center justify-between w-full gap-2">
-                    <div class="text-sm font-semibold">Precipitation: </div>
-                    <div class="text-lg"><%= glacierFirstData.otherFactor.precipitation %> mm</div>
-                    <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-                  </div>
-                </div>
-
-                
-        <!-- Column 19 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-primary">
-            <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-cube"></i>
-          </div>
-          <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Ice Melt Rate: </div>
-            <div class="text-lg"><%= glacierFirstData.otherFactor.iceMeltRate%> cm/h</div>
-            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-          </div>
-        </div>
-
-        <!-- Column 20 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-primary">
-            <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-hill-rockslide"></i>
-          </div>
-          <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Land Slide Risk: </div>
-            <div class="text-lg"><%= glacierFirstData.otherFactor.landslideRisk %></div>
-            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-          </div>
-        </div>
-
-        <!-- Column 21 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-primary">
-            <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-hill-avalanche"></i>
-          </div>
-          <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Avalanche Risk: </div>
-            <div class="text-lg"><%= glacierFirstData.otherFactor.avalancheRisk %></div>
-            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-          </div>
-        </div>
-
-        <!-- Column 22 -->
-        <div class="flex items-center justify-start p-2 rounded-lg">
-          <div class="text-2xl text-primary">
-            <!-- Icon (example: sun) -->
-            <i class="fa-solid fa-house-crack"></i>
-          </div>
-          <div class="ml-4 flex items-center justify-between w-full gap-2">
-            <div class="text-sm font-semibold">Earthquake Risk: </div>
-            <div class="text-lg"><%= glacierFirstData.otherFactor.earthquakeRisk %></div>
-            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
-          </div>
-        </div>
-
-
-        <!-- Column 24 -->
-      
+        
       </div>
 
+      <div class="flex items-start flex-col justify-start p-2 rounded-lg bg-secondary text-primary hover:-translate-y-2 transition-all duration-200">
+        <!-- Column 9 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-water"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Water Level: </div>
+            <div class="text-lg"><%= glacierFirstData.penguin.waterLevel %> m</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 10 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-temperature-low"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Water Temperature: </div>
+            <div class="text-lg"><%= glacierFirstData.penguin.waterTemperature %>°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 11 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-percent"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Water Flow Rate: </div>
+            <div class="text-lg"><%= glacierFirstData.penguin.waterFlowRate %> m³/s</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 12 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-temperature-low"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Ground Temperature:</div>
+            <div class="text-base"><%= glacierFirstData.penguin.groundTemperature %>°C</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 13 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Ground Composition: </div>
+            <div class="text-lg"><%= glacierFirstData.penguin.groundComposition %>%</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="flex items-start flex-col justify-start p-2 rounded-lg bg-secondary text-primary hover:-translate-y-2 transition-all duration-200">
+        <!-- Column 14 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-road-spikes"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Dam Pressure: </div>
+            <div class="text-lg"><%= glacierFirstData.eel.damPressure %> kPa</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+        
+        
+        <!-- Column 14 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-road-spikes"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">MorainePressure: </div>
+            <div class="text-lg"><%= glacierFirstData.eel.morainePressure %>kPa</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+
+        <!-- Column 14 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-road-spikes"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">GroundPressure:</div>
+            <div class="text-lg"><%= glacierFirstData.eel.groundPressure %>kPa</div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+        
+
+        <!-- Column 15 -->
+        <div class="flex items-center justify-start p-2 rounded-lg w-full">
+          <div class="text-2xl text-primary">
+            <!-- Icon (example: sun) -->
+            <i class="fa-solid fa-glass-water-droplet"></i>
+          </div>
+          <div class="ml-4 flex items-center justify-between w-full gap-2">
+            <div class="text-sm font-semibold">Ph Value: </div>
+            <div class="text-lg"><%= glacierFirstData.eel.phValue %></div>
+            <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+          </div>
+        </div>
+      
+      
+      <!-- Column 16 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-snowflake"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Ice Thickness: </div>
+          <div class="text-lg"><%= glacierFirstData.eel.iceThickness %> cm</div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+              
+      
+      <!-- Column 16 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-temperature-three-quarters"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Soil Temperature: </div>
+          <div class="text-lg"><%= glacierFirstData.eel.soilTemperature %>°C</div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+      <!-- Column 16 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-droplet"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Soil Moisture: </div>
+          <div class="text-lg"><%= glacierFirstData.eel.soilMoisture %> %</div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="flex items-start flex-col justify-start p-2 rounded-lg bg-secondary text-primary hover:-translate-y-2 transition-all duration-200">
+      <!-- Column 17 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-cloud-showers-water"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">RainFallIntensity: </div>
+          <div class="text-lg"><%= glacierFirstData.otherFactor.rainfallIntensity %>mm/h</div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+
+      <!-- Column 18 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-regular fa-snowflake"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Snow Fall: </div>
+          <div class="text-lg"><%= glacierFirstData.otherFactor.snowfall %> cm</div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+              <!-- Column 19 -->
+              <div class="flex items-center justify-start p-2 rounded-lg w-full">
+                <div class="text-2xl text-primary">
+                  <!-- Icon (example: sun) -->
+                  <i class="fa-solid fa-cloud-meatball"></i>
+                </div>
+                <div class="ml-4 flex items-center justify-between w-full gap-2">
+                  <div class="text-sm font-semibold">Precipitation: </div>
+                  <div class="text-lg"><%= glacierFirstData.otherFactor.precipitation %> mm</div>
+                  <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+                </div>
+              </div>
+
+              
+      <!-- Column 19 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Ice Melt Rate: </div>
+          <div class="text-lg"><%= glacierFirstData.otherFactor.iceMeltRate%> cm/h</div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+      <!-- Column 20 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-hill-rockslide"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Land Slide Risk: </div>
+          <div class="text-lg"><%= glacierFirstData.otherFactor.landslideRisk %></div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+      <!-- Column 21 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-hill-avalanche"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Avalanche Risk: </div>
+          <div class="text-lg"><%= glacierFirstData.otherFactor.avalancheRisk %></div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+      <!-- Column 22 -->
+      <div class="flex items-center justify-start p-2 rounded-lg w-full">
+        <div class="text-2xl text-primary">
+          <!-- Icon (example: sun) -->
+          <i class="fa-solid fa-house-crack"></i>
+        </div>
+        <div class="ml-4 flex items-center justify-between w-full gap-2">
+          <div class="text-sm font-semibold">Earthquake Risk: </div>
+          <div class="text-lg"><%= glacierFirstData.otherFactor.earthquakeRisk %></div>
+          <!-- <div class="text-sm text-gray-500">Humidity: 60%</div> -->
+        </div>
+      </div>
+
+    </div>
+      <!-- Column 24 -->
       
       </div>
     </div>
 
-    <div class="w-full my-6 flex items-center justify-center">
+    <div class="w-full my-6 flex items-center justify-center gap-6">
     <form
     action="/glacier/<%= id %>/historical"
     method="get"
@@ -566,6 +583,24 @@
   >
     <button type="submit">Historical Data</button>
   </form>
+  <form
+    action="/glacier/<%= id %>/graphical"
+    method="get"
+    class=" bg-secondary px-4 py-2 text-lg text-center inline-block text-primary font-bold rounded-full"
+  >
+    <button type="submit">Graphical Data</button>
+  </form>
 </div>
+
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    // const generateDataEl   = document.querySelector('#GenerateDataId');
+    // setTimeout(() => {
+    //   generateDataEl.submit();
+    //   }, 5000);
+  });
+</script>
   </body>
 </html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endangered Glaciers Satellite Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        #info-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #info-icon:hover {
+            transform: scale(1.05);
+            background-color: #f0f0f0;
+        }
+        #info-content {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            z-index: 1000;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            padding: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        #info-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #info-content ul li {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+        }
+        #info-content ul li:hover {
+            background-color: #f0f0f0;
+        }
+        #info-content ul li span {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            transition: transform 0.3s ease;
+        }
+        #info-content ul li:hover span {
+            transform: scale(1.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="info-icon">
+        <i class='bx bxs-info-circle'></i>
+    </div>
+    <div id="info-content">
+        <h3>Info</h3>
+        <ul>
+            <li><span style="background-color: #ff0000; border: 1px solid #ffffff;"></span> Endangered Glaciers</li>
+            
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([32.0, 78.0], 5); // Centered on India with appropriate zoom level
+
+    // Add a light satellite tile layer
+    L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: 'Map data © Google',
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }).addTo(map);
+
+    // Indian glaciers with alerts
+    var indianGlaciers = [
+        { name: "Gangotri Glacier", coords: [30.98, 79.08], alertLevel: "High" },
+        { name: "Zemu Glacier", coords: [27.70, 88.08], alertLevel: "Moderate" },
+        { name: "Siachen Glacier", coords: [35.5, 77.0], alertLevel: "Critical" },
+        { name: "Milam Glacier", coords: [30.5, 80.1], alertLevel: "Low" },
+        { name: "Pindari Glacier", coords: [30.4, 79.9], alertLevel: "Moderate" }
+    ];
+
+    // Function to determine circle radius and color based on alert level
+    function getCircleOptions(alertLevel) {
+        let options = {
+            color: '#FF0000', // Border color
+            fillColor: '#FF0000', // Fill color
+            fillOpacity: 0.6,
+        };
+
+        switch (alertLevel) {
+            case "Critical":
+                options.radius = 15000; // Larger radius for critical alerts
+                break;
+            case "High":
+                options.radius = 10000; // Medium radius
+                break;
+            case "Moderate":
+                options.radius = 7000; // Smaller radius
+                break;
+            case "Low":
+                options.radius = 5000; // Smallest radius
+                break;
+        }
+        return options;
+    }
+
+    // Add alerts as circle markers on the map
+    indianGlaciers.forEach(function (glacier) {
+        var options = getCircleOptions(glacier.alertLevel);
+        var circle = L.circle(glacier.coords, options).addTo(map);
+
+        circle.bindPopup("<b>" + glacier.name + "</b><br>Alert Level: " + glacier.alertLevel);
+    });
+
+    // Info icon toggle functionality
+    var infoIcon = document.getElementById('info-icon');
+    var infoContent = document.getElementById('info-content');
+
+    infoIcon.addEventListener('click', function () {
+        if (infoContent.style.display === 'none' || infoContent.style.display === '') {
+            infoContent.style.display = 'block';
+            infoContent.style.opacity = '1';
+            infoContent.style.visibility = 'visible';
+            infoContent.style.transform = 'translateY(0)';
+        } else {
+            infoContent.style.display = 'none';
+            infoContent.style.opacity = '0';
+            infoContent.style.visibility = 'hidden';
+            infoContent.style.transform = 'translateY(-10px)';
+        }
+    });
+</script>
+</body>
+</html>
